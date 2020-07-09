@@ -41,12 +41,12 @@ Para se utilizar Docker no Windows temos três versões:
 * Docker Desktop com Hyper-V.
 * Docker Desktop com WSL2.
 
-### Docker Toolbox
+#### Docker Toolbox
 
 Roda em cima do programa de virtualização de sistemas da Oracle, chamado de **VirtualBox**.
 O desempenho do Docker Toolbox para muitas aplicações/ferramentas pode ser muito ruim, inviabilizando seu uso.
 
-### Docker Desktop com Hyper-V
+#### Docker Desktop com Hyper-V
 
 Roda em cima do **Hyper-V** da Microsoft em vez de usar o VirtualBox usando pelo Docker Toolbox. O Docker Desktop com Hyper-V necessita da versão **PRO** do Windows 10, portanto é necessário compra-la se você não a tem.
 
@@ -54,7 +54,7 @@ O Hyper-V costuma requerer muitos recursos da máquina e apesar do desempenho se
 
 *A Docker já anunciou que vai remover o suporte ao Hyper-V futuramente.*
 
-## Docker Desktop com WSL2
+#### Docker Desktop com WSL2
 
 Roda em cima do **Virtual Machine Platform** em vez de usar o VirtualBox ou Hyper-V. Se integra com o WSL2 permitindo rodar o Docker dentro do ambiente do Linux. Não é necessário adquirir licença PRO do Windows 10, tem um grande desempenho e consome menos recursos quando comparado ao Docker Toolbox ou Docker Desktop com Hyper-V.
 
@@ -68,7 +68,7 @@ Temos a grande vantagem de se trabalhar totalmente dentro do Linux para desenvol
 
 ## Instalação do WSL 2
 
-### Instale a versão 20.04 do Windows 10
+#### Instale a versão 20.04 do Windows 10
 
 O WSL 2 só funciona no Windows 10 **20.04** ou superior.
 
@@ -78,7 +78,7 @@ Pode ser que seu Windows 10 já seja igual ou superior a 20.04, verifique isto a
 
 Se seu Windows 10 não for 20.04 baixe o pacote de atualização [https://go.microsoft.com/fwlink/?LinkID=799445](https://go.microsoft.com/fwlink/?LinkID=799445). A instalação pode demorar aproximadamente **1 hora**.
 
-### Habilite o WSL no Windows 10
+#### Habilite o WSL no Windows 10
 
 Execute os seguintes comandos no PowerShell em modo administrador:
 ``` bash
@@ -86,11 +86,11 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
-### Instale o WSL 2 no Windows 10
+#### Instale o WSL 2 no Windows 10
 
 Baixe o Kernel do WSL 2 neste link: [https://docs.microsoft.com/pt-br/windows/wsl/wsl2-kernel](https://docs.microsoft.com/pt-br/windows/wsl/wsl2-kernel) e instale o pacote.
 
-### Atribua a versão default do WSL para a versão 2
+#### Atribua a versão default do WSL para a versão 2
 
 A versão 1 do WSL é a padrão no momento, atribua a versão default para a versão 2, assim todas as distribuições Linux instaladas serão já por default da versão 2. Execute o comando com o PowerShell:
 
@@ -98,7 +98,7 @@ A versão 1 do WSL é a padrão no momento, atribua a versão default para a ver
 wsl --set-default-version 2
 ```
 
-### Escolha sua distribuição Linux no Windows Store
+#### Escolha sua distribuição Linux no Windows Store
 
 Escolha sua distribuição Linux preferida no aplicativo Windows Store, sugerimos o Ubuntu por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
 
@@ -110,7 +110,7 @@ Parabéns, seu WSL2 já está funcionando:
 
 ![Exemplo de WSL2 funcionando](wsl2_funcionando.png)
 
-### (Opcional) Alterar a versão do WSL 1 de uma distribuição para a versão 2
+#### (Opcional) Alterar a versão do WSL 1 de uma distribuição para a versão 2
 
 Se você já tiver o WSL 1 na máquina e acabou de instalar a versão 2, pode-se converter sua distribuição Linux WSL 1 para WSL 2, execute o comando com o PowerShell:
 
@@ -148,11 +148,11 @@ Para aplicar estas configurações é necessário reiniciar as distribuições L
 
 ## Integrar Docker com WSL 2
 
-### Instale o Docker Desktop
+#### Instale o Docker Desktop
 
 Baixe neste link: [https://hub.docker.com/editions/community/docker-ce-desktop-windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows) e instale o Docker Desktop.
 
-### Habilite o Docker dentro do WSL 2
+#### Habilite o Docker dentro do WSL 2
 
 Clique no **ícone do Docker perto do relógio -> Settings -> Settings no topo -> Resources -> WSL Integration**.
 
@@ -162,7 +162,7 @@ Habilite **Enable integration with my default WSL distro** e habilite sua versã
 
 Parabéns, você agora tem um excelente ambiente de desenvolvimento com WSL 2 e Docker.
 
-### Use BuildKit and multi-stage builds
+#### Use BuildKit and multi-stage builds
 
 Acrescente **export DOCKER_BUILDKIT=1** no final do arquivo .profile do seu usuário do Linux para ganhar mais performance ao realizar builds com Docker. Execute o comando **source ~/.profile** para carregar esta variável de ambiente no ambiente do seu WSL 2.
 
