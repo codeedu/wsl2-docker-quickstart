@@ -120,6 +120,12 @@ wsl --set-version <distribution name> 2
 
 Isto pode demorar muitos minutos.
 
+#### (Opcional) Usar Windows Terminal como terminal padrão de desenvolvimento para Windows
+
+Uma deficiência que o Windows sempre teve era prover um terminal adequado para desenvolvimento. Agora temos o **Windows Terminal** construído pela própria Microsoft que permite rodar terminais em abas, alterar cores e temas, configurar atalhos e muito mais.
+
+Instale-o pelo Windows Store e use estas [configurações padrões](windows-terminal-settings.json) para habilitar WSL 2, Git Bash e o tema drácula e alguns atalhos.
+
 ## O que o WSL 2 pode usar de recursos da sua máquina
 
 Podemos dizer que o WSL 2 tem acesso quase que total ao recursos de sua máquina. Ele tem acesso por padrão:
