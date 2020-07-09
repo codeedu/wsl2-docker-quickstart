@@ -74,7 +74,7 @@ O WSL 2 só funciona no Windows 10 **20.04** ou superior.
 
 Pode ser que seu Windows 10 já seja igual ou superior a 20.04, verifique isto acessando o **menu de notificações perto do relógio > Todas as configurações > Sistema > Sobre**.
 
-![Windows 10 20.04](windows_10_2004.png)
+![Windows 10 20.04](img/windows_10_2004.png)
 
 Se seu Windows 10 não for 20.04 baixe o pacote de atualização [https://go.microsoft.com/fwlink/?LinkID=799445](https://go.microsoft.com/fwlink/?LinkID=799445). A instalação pode demorar aproximadamente **1 hora**.
 
@@ -102,13 +102,13 @@ wsl --set-default-version 2
 
 Escolha sua distribuição Linux preferida no aplicativo Windows Store, sugerimos o Ubuntu por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
 
-![Distribuições Linux no Windows Store](distribuicoes_linux.png)
+![Distribuições Linux no Windows Store](img/distribuicoes_linux.png)
 
 Ao iniciar o Linux instalado, você deverá criar um **nome de usuário** que poderá ser o mesmo da sua máquina e uma **senha**, este será o usuário **root da sua instância WSL**.
 
 Parabéns, seu WSL2 já está funcionando:
 
-![Exemplo de WSL2 funcionando](wsl2_funcionando.png)
+![Exemplo de WSL2 funcionando](img/wsl2_funcionando.png)
 
 #### (Opcional) Alterar a versão do WSL 1 de uma distribuição para a versão 2
 
@@ -158,7 +158,7 @@ Clique no **ícone do Docker perto do relógio -> Settings -> Settings no topo -
 
 Habilite **Enable integration with my default WSL distro** e habilite sua versão Linux.
 
-![Docker funcionando dentro do WSL 2](docker_funcionando_dentro_do_wsl2.png)
+![Docker funcionando dentro do WSL 2](img/docker_funcionando_dentro_do_wsl2.png)
 
 Parabéns, você agora tem um excelente ambiente de desenvolvimento com WSL 2 e Docker.
 
@@ -171,16 +171,16 @@ Acrescente **export DOCKER_BUILDKIT=1** no final do arquivo .profile do seu usu�
 * A performance do WSL 2 está em se executar tudo dentro do Linux, por isso evite executar seus projetos com ou sem Docker do caminho **/mnt/c**, pois você perderá performance.
 * Para abrir o terminal do WSL basta digitar o nome da distribuição no menu Iniciar ou executar **C:\Windows\System32\wsl.exe**.
 * O sistema de arquivos do Windows 10 é acessível em **/mnt**.
-![Mount no WSL2](mount_no_wsl2.png)
+![Mount no WSL2](img/mount_no_wsl2.png)
 * É possível acessar o sistema de arquivos do Linux pela rede do Windows, digite **\\wsl$** no Windows Explorer.
-![Acessando WSL2 no Windows Explorer](acessando_wsl2_no_explorer.png)
+![Acessando WSL2 no Windows Explorer](img/acessando_wsl2_no_explorer.png)
 * É possível acessar uma pasta no Windows Explorer digitando o comando ```explorer.exe .```.
 * É possível abrir uma pasta ou arquivo com o Visual Studio Code digitando o comando ```code . ou code meu_arquivo.ext```.
 * Incrivelmente é possível acessar executáveis do Windows no terminal do Linux executando-os com .exe no final (não significa que funcionarão corretamente).
-![Executando executáveis do Windows no WSL2](executaveis_do_windows_no_wsl2.png)
+![Executando executáveis do Windows no WSL2](img/executaveis_do_windows_no_wsl2.png)
 * É possível executar algumas aplicações gráficas do Linux com WSL 2. Leia este tutorial: [https://medium.com/@dianaarnos/aplica%C3%A7%C3%B5es-gr%C3%A1ficas-no-wsl2-e0a481e9768c](https://medium.com/@dianaarnos/aplica%C3%A7%C3%B5es-gr%C3%A1ficas-no-wsl2-e0a481e9768c).
 * Execute o comando ```wsl -l -v``` com o PowerShell para ver as versões de Linux instaladas e seu status atual(parado ou rodando).
-![Verificando distribuições instaladas do Linux no WSL 2](verificando_distribuicoes_instaladas_do_linux_no_wsl2.png)
+![Verificando distribuições instaladas do Linux no WSL 2](img/verificando_distribuicoes_instaladas_do_linux_no_wsl2.png)
 * Execute o comando ```wsl --shutdown``` com o PowerShell para desligar todas as distribuições Linux que estão rodando no mento (ao executar o comando, as distribuições do Docker também serão desligadas e o Docker Desktop mostrará uma notificação ao lado do relógio perguntando se você quer iniciar as distribuições dele novamente, se você não aceitar terá que iniciar o Docker novamente com o ícone perto do relógio do Windows).
 * Execute com o PowerShell o comando ```wsl --t <distribution name>``` para desligar somente uma distribuiçao Linux específica.
 * Se verificar que o WSL 2 está consumindo muitos recursos da máquina, execute os seguintes comandos dentro do terminal WSL 2 para liberar memória RAM:
