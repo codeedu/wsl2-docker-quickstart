@@ -85,6 +85,7 @@ Execute os seguintes comandos no PowerShell em modo administrador:
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
+Abra o PowerShell e digite o comando **wsl**, se não funcionar reinicie sua máquina.
 
 #### Instale o WSL 2 no Windows 10
 
@@ -184,7 +185,7 @@ Acrescente **export DOCKER_BUILDKIT=1** no final do arquivo .profile do seu usu�
 * Para abrir o terminal do WSL basta digitar o nome da distribuição no menu Iniciar ou executar **C:\Windows\System32\wsl.exe**.
 * O sistema de arquivos do Windows 10 é acessível em **/mnt**.
 ![Mount no WSL2](img/mount_no_wsl2.png)
-* É possível acessar o sistema de arquivos do Linux pela rede do Windows, digite **\\wsl$** no Windows Explorer.
+* É possível acessar o sistema de arquivos do Linux pela rede do Windows, digite **\\\\wsl$** no Windows Explorer.
 ![Acessando WSL2 no Windows Explorer](img/acessando_wsl2_no_explorer.png)
 * É possível acessar uma pasta no Windows Explorer digitando o comando ```explorer.exe .```.
 * É possível abrir uma pasta ou arquivo com o Visual Studio Code digitando o comando ```code . ou code meu_arquivo.ext```.
