@@ -18,6 +18,9 @@ Em 2019, a Microsoft anunciou o **WSL 2**, com uma dinâmica aprimorada em rela�
 
 O WSL 2 já estava disponível na versão **Insider** do Windows 10, mas na última semana de maio de 2020 passou a estar disponível em final release na atualização **20.04** do Windows 10.
 
+**Atualização**
+A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas edições 1903 e 1909, pórem somente em sistemas x64.
+
 Com WSL 2 é possível executar Docker no Linux usando o Windows 10.
 
 Compare as versões: [https://docs.microsoft.com/pt-br/windows/wsl/compare-versions](https://docs.microsoft.com/pt-br/windows/wsl/compare-versions)
@@ -63,6 +66,9 @@ Temos a grande vantagem de se trabalhar totalmente dentro do Linux para desenvol
 ## Requisitos mínimos
 
 * Windows 10 Home ou Professional com versão **20.04** ou superior.
+
+**Atualização**
+A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas edições 1903 e 1909, pórem somente em sistemas x64.
 * Uma máquina compatível com virtualização (verifique a disponibilidade de acordo com a marca do seu processador. Se sua máquina for mais antiga pode ser necessária habilita-la na BIOS).
 * Pelo menos 4GB de memória RAM.
 
