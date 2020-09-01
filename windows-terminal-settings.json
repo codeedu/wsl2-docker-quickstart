@@ -32,12 +32,11 @@
                 "icon": "C:\\Program Files\\Git\\mingw64\\share\\git\\git-for-windows.ico"
             },
             {
-                "guid": "{73225108-7633-47ae-80c1-5d00111ef647}",
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "name": "Ubuntu",
-                "commandline": "C:\\Windows\\System32\\wsl.exe",
-                "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\argen\\",
-                "icon": "C:\\Program Files\\WindowsApps\\CanonicalGroupLimited.UbuntuonWindows_2004.2020.424.0_x64__79rhkp1fndgsc\\Assets\\Square44x44Logo.altform-unplated_targetsize-256.png"
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\argen\\"
             },
             {
                 // Make changes here to the powershell.exe profile.
@@ -64,12 +63,6 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
