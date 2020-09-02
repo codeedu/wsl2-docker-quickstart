@@ -6,7 +6,7 @@
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "defaultProfile": "{73225108-7633-47ae-80c1-5d00111ef646}",
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
     // You can add more global application settings here.
     // To learn more about global settings, visit https://aka.ms/terminal-global-settings
     // If enabled, selections are automatically copied to your clipboard.
