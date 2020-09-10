@@ -207,3 +207,7 @@ Acrescente **export DOCKER_BUILDKIT=1** no final do arquivo .profile do seu usu�
 echo 1 | sudo tee /proc/sys/vm/drop_caches
 echo 3 | sudo tee /proc/sys/vm/drop_caches
 ```
+
+## Dúvidas
+
+* O WSL 2 funciona junto com outras máquinas virtuais como VirtualBoux ou VMWare? Siga a [referência](https://docs.microsoft.com/pt-br/windows/wsl/wsl2-faq#will-i-be-able-to-run-wsl-2-and-other-3rd-party-virtualization-tools-such-as-vmware-or-virtualbox)
