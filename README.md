@@ -19,7 +19,7 @@ Em 2019, a Microsoft anunciou o **WSL 2**, com uma dinâmica aprimorada em rela�
 O WSL 2 já estava disponível na versão **Insider** do Windows 10, mas na última semana de maio de 2020 passou a estar disponível em final release na atualização **20.04** do Windows 10.
 
 **Atualização**
-A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas edições 1903 e 1909, pórem somente em sistemas x64.
+A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas edições 1903 e 1909, porém somente em sistemas x64.
 
 Com WSL 2 é possível executar Docker no Linux usando o Windows 10.
 
@@ -68,7 +68,8 @@ Temos a grande vantagem de se trabalhar totalmente dentro do Linux para desenvol
 * Windows 10 Home ou Professional com versão **20.04** ou superior.
 
 **Atualização**
-A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas edições 1903 e 1909, pórem somente em sistemas x64.
+A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas edições 1903 e 1909, porém somente em sistemas x64.
+
 * Uma máquina compatível com virtualização (verifique a disponibilidade de acordo com a marca do seu processador. Se sua máquina for mais antiga pode ser necessária habilita-la na BIOS).
 * Pelo menos 4GB de memória RAM.
 
@@ -78,7 +79,7 @@ A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas ediçõe
 
 O WSL 2 só funciona no Windows 10 **20.04** ou superior.
 
-Pode ser que seu Windows 10 já seja igual ou superior a 20.04, verifique isto acessando o **menu de notificações perto do relógio > Todas as configurações > Sistema > Sobre**.
+Pode ser que seu Windows 10 já seja igual ou superior a 20.04, verifique isto acessando o `menu de notificações perto do relógio > Todas as configurações > Sistema > Sobre`.
 
 ![Windows 10 20.04](img/windows_10_2004.png)
 
@@ -91,7 +92,7 @@ Execute os seguintes comandos no PowerShell em modo administrador:
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
-Abra o PowerShell e digite o comando **wsl**, se não funcionar reinicie sua máquina.
+Abra o PowerShell e digite o comando `wsl`, se não funcionar reinicie sua máquina.
 
 #### Instale o WSL 2 no Windows 10
 
@@ -150,9 +151,9 @@ Podemos dizer que o WSL 2 tem acesso quase que total ao recursos de sua máquina
 
 Isto pode não ser interessante, uma vez que o WSL 2 pode usar praticamente todos os recursos de sua máquina, mas podemos configurar limites.
 
-Crie um arquivo chamado **.wslconfig** na raiz da sua pasta de usuário **(C:\Users\<seu_usuario>)** e defina estas configurações:
+Crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usuário `(C:\Users\<seu_usuario>)` e defina estas configurações:
 
-``` txt
+```txt
 [wsl2]
 options=metadata,umask=22,fmask=11
 memory=8GB
@@ -163,7 +164,7 @@ swap=2GB
 Estes são limites de exemplo e as configurações mais básicas a serem utilizadas, configure-os às suas disponibilidades.
 Para mais detalhes veja esta documentação da Microsoft: [https://docs.microsoft.com/pt-br/windows/wsl/wsl-config#wsl-2-settings](https://docs.microsoft.com/pt-br/windows/wsl/wsl-config#wsl-2-settings).
 
-Para aplicar estas configurações é necessário reiniciar as distribuições Linux, então sugerimos executar no PowerShell o comando: ```wsl --shutdown``` (Este comando vai desligar todas as instâncias WSL 2 ativas e basta abrir o terminal novamente para usa-la já com as novas configurações).
+Para aplicar estas configurações é necessário reiniciar as distribuições Linux, então sugerimos executar no PowerShell o comando: `wsl --shutdown` (Este comando vai desligar todas as instâncias WSL 2 ativas e basta abrir o terminal novamente para usa-la já com as novas configurações).
 
 ## Integrar Docker com WSL 2
 
@@ -173,9 +174,9 @@ Baixe neste link: [https://hub.docker.com/editions/community/docker-ce-desktop-w
 
 #### Habilite o Docker dentro do WSL 2
 
-Clique no **ícone do Docker perto do relógio -> Settings -> Settings no topo -> Resources -> WSL Integration**.
+Clique no `ícone do Docker perto do relógio -> Settings -> Settings no topo -> Resources -> WSL Integration`.
 
-Habilite **Enable integration with my default WSL distro** e habilite sua versão Linux.
+Habilite `Enable integration with my default WSL distro` e habilite sua versão Linux.
 
 ![Docker funcionando dentro do WSL 2](img/docker_funcionando_dentro_do_wsl2.png)
 
@@ -183,15 +184,15 @@ Parabéns, você agora tem um excelente ambiente de desenvolvimento com WSL 2 e 
 
 #### Use BuildKit and multi-stage builds
 
-Acrescente **export DOCKER_BUILDKIT=1** no final do arquivo .profile do seu usuário do Linux para ganhar mais performance ao realizar builds com Docker. Execute o comando **source ~/.profile** para carregar esta variável de ambiente no ambiente do seu WSL 2.
+Acrescente `export DOCKER_BUILDKIT=1` no final do arquivo .profile do seu usuário do Linux para ganhar mais performance ao realizar builds com Docker. Execute o comando `source ~/.profile` para carregar esta variável de ambiente no ambiente do seu WSL 2.
 
 ## Dicas e truques básicos com WSL 2
 
-* A performance do WSL 2 está em se executar tudo dentro do Linux, por isso evite executar seus projetos com ou sem Docker do caminho **/mnt/c**, pois você perderá performance.
-* Para abrir o terminal do WSL basta digitar o nome da distribuição no menu Iniciar ou executar **C:\Windows\System32\wsl.exe**.
-* O sistema de arquivos do Windows 10 é acessível em **/mnt**.
+* A performance do WSL 2 está em se executar tudo dentro do Linux, por isso evite executar seus projetos com ou sem Docker do caminho `/mnt/c`, pois você perderá performance.
+* Para abrir o terminal do WSL basta digitar o nome da distribuição no menu Iniciar ou executar `C:\Windows\System32\wsl.exe`.
+* O sistema de arquivos do Windows 10 é acessível em `/mnt`.
 ![Mount no WSL2](img/mount_no_wsl2.png)
-* É possível acessar o sistema de arquivos do Linux pela rede do Windows, digite **\\\\wsl$** no Windows Explorer.
+* É possível acessar o sistema de arquivos do Linux pela rede do Windows, digite `\\wsl$` no Windows Explorer.
 ![Acessando WSL2 no Windows Explorer](img/acessando_wsl2_no_explorer.png)
 * É possível acessar uma pasta no Windows Explorer digitando o comando ```explorer.exe .```.
 * É possível abrir uma pasta ou arquivo com o Visual Studio Code digitando o comando ```code . ou code meu_arquivo.ext```.
@@ -201,7 +202,7 @@ Acrescente **export DOCKER_BUILDKIT=1** no final do arquivo .profile do seu usu�
 * Execute o comando ```wsl -l -v``` com o PowerShell para ver as versões de Linux instaladas e seu status atual(parado ou rodando).
 ![Verificando distribuições instaladas do Linux no WSL 2](img/verificando_distribuicoes_instaladas_do_linux_no_wsl2.png)
 * Execute o comando ```wsl --shutdown``` com o PowerShell para desligar todas as distribuições Linux que estão rodando no mento (ao executar o comando, as distribuições do Docker também serão desligadas e o Docker Desktop mostrará uma notificação ao lado do relógio perguntando se você quer iniciar as distribuições dele novamente, se você não aceitar terá que iniciar o Docker novamente com o ícone perto do relógio do Windows).
-* Execute com o PowerShell o comando ```wsl --t <distribution name>``` para desligar somente uma distribuiçao Linux específica.
+* Execute com o PowerShell o comando ```wsl --t <distribution name>``` para desligar somente uma distribuição Linux específica.
 * Se verificar que o WSL 2 está consumindo muitos recursos da máquina, execute os seguintes comandos dentro do terminal WSL 2 para liberar memória RAM:
 ```bash
 echo 1 | sudo tee /proc/sys/vm/drop_caches
@@ -210,4 +211,4 @@ echo 3 | sudo tee /proc/sys/vm/drop_caches
 
 ## Dúvidas
 
-* O WSL 2 funciona junto com outras máquinas virtuais como VirtualBoux ou VMWare? Siga a [referência](https://docs.microsoft.com/pt-br/windows/wsl/wsl2-faq#will-i-be-able-to-run-wsl-2-and-other-3rd-party-virtualization-tools-such-as-vmware-or-virtualbox)
+* O WSL 2 funciona junto com outras máquinas virtuais como **VirtualBox** ou **VMWare**? Siga a [referência](https://docs.microsoft.com/pt-br/windows/wsl/wsl2-faq#will-i-be-able-to-run-wsl-2-and-other-3rd-party-virtualization-tools-such-as-vmware-or-virtualbox)
