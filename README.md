@@ -16,10 +16,7 @@ Em 2019, a Microsoft anunciou o **WSL 2**, com uma dinâmica aprimorada em rela�
 * Melhor desempenho para acesso aos arquivos dentro do Linux.
 * Compatibilidade completa de chamada do sistema.
 
-O WSL 2 já estava disponível na versão **Insider** do Windows 10, mas na última semana de maio de 2020 passou a estar disponível em final release na atualização **20.04** do Windows 10.
-
-**Atualização**
-A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas edições 1903 e 1909, porém somente em sistemas x64.
+O WSL 2 foi lançado oficialmente no dia 28 de maio de 2020.
 
 Com WSL 2 é possível executar Docker no Linux usando o Windows 10.
 
@@ -36,13 +33,15 @@ Configurar ambientes de desenvolvimento no Windows sempre foi burocrático e com
 
 Com o nascimento do Docker este cenário melhorou bastante, pois podemos montar nosso ambiente de desenvolvimento baseado em Unix, de forma independente e rápida, e ainda unificada com outros sistemas operacionais.
 
-Veja nossa **live sobre WSL 2 + Docker no canal Full Cycle**: [https://www.youtube.com/watch?v=g4HKttouVxA](https://www.youtube.com/watch?v=g4HKttouVxA).
+Veja nossa **live sobre WSL 2 + Docker no canal Full Cycle**: [https://www.youtube.com/watch?v=usF0rYCcj-E](https://www.youtube.com/watch?v=usF0rYCcj-E).
 
-Para se utilizar Docker no Windows temos três versões:
 
-* Docker Toolbox.
-* Docker Desktop com Hyper-V.
-* Docker Desktop com WSL2.
+## Modos de usar Docker no Windows
+
+* [Docker Toolbox](#docker-toolbox).
+* [Docker Desktop com Hyper-V](#docker-desktop-com-hyper-v).
+* [Docker Desktop com WSL2](#docker-desktop-com-wsl2).
+* [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#docker-engine-(docker-nativo)-diretamente-instalado-no-wsl2).
 
 ### Docker Toolbox
 
@@ -63,27 +62,52 @@ Roda em cima do **Virtual Machine Platform** em vez de usar o VirtualBox ou Hype
 
 Temos a grande vantagem de se trabalhar totalmente dentro do Linux para desenvolvimento, portanto, usar WSL2 + Docker é a melhor maneira de se desenvolver aplicações no Windows.
 
+#### Vantagens
+
+* Simplifica a configuração do Docker tanto no Windows quanto no WSL 2.
+* Permite rodar o Docker fora do WSL 2. É possível usar qualquer shell como PowerShell ou DOS.
+* Suporta containers em modo Windows (Imagens que contém Windows por debaixo dos panos ao invés de Linux).
+* Cria um ambiente centralizado para armazenamento de imagens, volumes e outros configurações Docker. Pode-se ter várias distribuições do WSL 2 rodando o mesmo Docker.
+* Interface visual para administrar o Docker.
+
+#### Desvantagens
+
+* Uso de memória inicial sem rodar nenhum container Docker pode chegar a 3GB.
+* Adiciona infraestrutura complexa para executar Docker, quando se necessita apenas de rodar os containers Docker dentro de um WSL 2 apenas.
+
+
+### Docker Engine (Docker Nativo) diretamente instalado no WSL2.
+
+O Docker Engine é o Docker nativo que roda no ambiente Linux e completamente suportado para WSL 2. Sua instalação é idêntica a descrita para as próprias distribuições Linux disponibilizadas no site do [Docker](https://docs.docker.com/engine/install/ubuntu/).
+
+#### Vantagens
+
+* Consume o mínimo de memória necessário para rodar o Docker Daemon (servidor do Docker).
+* É mais rápido ainda que com Docker Desktop, porque rodar diretamente dentro da própria instância do WSL2 e não em uma instância separada de Linux.
+
+#### Desvantagens
+
+* Necessário executar o comando ```sudo service docker start``` sempre que o WSL 2 foi reiniciado. Isto não é necessariamente uma desvantagem, mas é bom pontuar, mas isto é um pequeno detalhe e será resolvido futuramente com a inclusão do arquivo /etc/wsl.conf que permitirá incluir comandos para serem executados toda vez que o WSL for reiniciado.
+* Se necessitar executar Docker em outra instância do WSL 2, é necessário instalar novamente o Docker nesta instância ou configurar o acesso ao socket do Docker desejado para compartilhar o Docker entre as instâncias.
+* Não suporta containers no modo Windows.
+
 ## Requisitos mínimos
 
-* Windows 10 Home ou Professional com versão **20.04** ou superior.
+* Windows 10 Home ou Professional.
 
-**Atualização**
-A partir de 21 de agosto de 2020, o WSL 2 também está disponível nas edições 1903 e 1909, porém somente em sistemas x64.
+* Versão do Windows (Pode ser que seu Windows 10 já seja igual ou superior a 20.04, verifique isto acessando o `menu de notificações perto do relógio > Todas as configurações > Sistema > Sobre`.):
+
+  - Para sistemas x64: Versão 1903 ou superiores, com o Build 18362 ou superiores.
+  
+  - Para sistemas ARM64: Versão 2004 ou superiores, com o Build 19041 ou superiores.
+  
+  - Os builds inferiores a 18362 não dão suporte a WSL 2. Use o Assistente do Windows Update para atualizar a sua versão do Windows.
+
 
 * Uma máquina compatível com virtualização (verifique a disponibilidade de acordo com a marca do seu processador. Se sua máquina for mais antiga pode ser necessária habilita-la na BIOS).
 * Pelo menos 4GB de memória RAM.
 
 ## Instalação do WSL 2
-
-### Instale a versão 20.04 do Windows 10
-
-O WSL 2 só funciona no Windows 10 **20.04** ou superior.
-
-Pode ser que seu Windows 10 já seja igual ou superior a 20.04, verifique isto acessando o `menu de notificações perto do relógio > Todas as configurações > Sistema > Sobre`.
-
-![Windows 10 20.04](img/windows_10_2004.png)
-
-Se seu Windows 10 não for 20.04 baixe o pacote de atualização [https://go.microsoft.com/fwlink/?LinkID=799445](https://go.microsoft.com/fwlink/?LinkID=799445). A instalação pode demorar aproximadamente **1 hora**.
 
 ### Habilite o WSL no Windows 10
 
@@ -155,7 +179,6 @@ Crie um arquivo chamado `.wslconfig` na raiz da sua pasta de usuário `(C:\Users
 
 ```txt
 [wsl2]
-options=metadata,umask=22,fmask=11
 memory=8GB
 processors=4
 swap=2GB
@@ -168,11 +191,78 @@ Para aplicar estas configurações é necessário reiniciar as distribuições L
 
 ## Integrar Docker com WSL 2
 
-### Instale o Docker Desktop
+No início deste tutorial vimos [4 modos de usar Docker no Windows](#modos-de-usar-docker-no-windows), mas somente 2 são recomendamos:
+
+* [Docker Desktop com WSL2](#docker-desktop-com-wsl2).
+* [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#docker-engine-(docker-nativo)-diretamente-instalado-no-wsl2).
+
+Recomendamos que escolha a 2ª opção pelos seus benefícios, já que a maioria das pessoas poderão usar o WSL 2 como ferramenta central para desenvolvimento. Mas, neste tutorial vamos mostrar as duas forma de instação.
+
+
+### 1 - Instalar o Docker com Docker Engine (Docker Nativo)
+
+A instalação do Docker no WSL 2 é idêntica a instalação do Docker em sua própria distribuição Linux, portanto se você tem o Ubuntu é igual ao Ubuntu, se é Fedora é igual ao Fedora. A documentação de instalação do Docker no Linux por distribuição está [aqui](https://docs.docker.com/engine/install/), mas vamos ver como instalar no Ubuntu.
+
+Instale os pré-requisitos:
+
+```
+sudo apt update && sudo apt upgrade
+sudo apt remove docker docker-engine docker.io containerd runc
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+```
+
+Adicione o repositório do Docker na lista de sources do Ubuntu:
+
+```
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Instale o Docker Engine
+
+```
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+```
+
+Dê permissão para rodar o Docker com seu usuário corrente:
+
+```
+sudo usermod -aG docker $USER
+```
+
+Instale o Docker Compose:
+
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+
+Inicie o serviço do Docker:
+
+```
+sudo service docker start
+```
+
+Este comando acima terá que ser executado toda vez que Linux for reiniciado. Se caso o serviço do Docker não estiver executando, mostrará esta mensagem de erro:
+
+```
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+```
+
+### 2 - Instalar o Docker com Docker Desktop
 
 Baixe neste link: [https://hub.docker.com/editions/community/docker-ce-desktop-windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows) e instale o Docker Desktop.
-
-### Habilite o Docker dentro do WSL 2
 
 Clique no `ícone do Docker perto do relógio -> Settings -> Settings no topo -> Resources -> WSL Integration`.
 
@@ -180,11 +270,6 @@ Habilite `Enable integration with my default WSL distro` e habilite sua versão 
 
 ![Docker funcionando dentro do WSL 2](img/docker_funcionando_dentro_do_wsl2.png)
 
-Parabéns, você agora tem um excelente ambiente de desenvolvimento com WSL 2 e Docker.
-
-### Use BuildKit and multi-stage builds
-
-Acrescente `export DOCKER_BUILDKIT=1` no final do arquivo .profile do seu usuário do Linux para ganhar mais performance ao realizar builds com Docker. Execute o comando `source ~/.profile` para carregar esta variável de ambiente no ambiente do seu WSL 2.
 
 ## Dicas e truques básicos com WSL 2
 
@@ -206,8 +291,8 @@ Acrescente `export DOCKER_BUILDKIT=1` no final do arquivo .profile do seu usuár
 * Se verificar que o WSL 2 está consumindo muitos recursos da máquina, execute os seguintes comandos dentro do terminal WSL 2 para liberar memória RAM:
 ```bash
 echo 1 | sudo tee /proc/sys/vm/drop_caches
-echo 3 | sudo tee /proc/sys/vm/drop_caches
 ```
+* Acrescente `export DOCKER_BUILDKIT=1` no final do arquivo .profile do seu usuário do Linux para ganhar mais performance ao realizar builds com Docker. Execute o comando `source ~/.profile` para carregar esta variável de ambiente no ambiente do seu WSL 2.
 
 ## Dúvidas
 
