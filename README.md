@@ -41,7 +41,7 @@ Veja nossa **live sobre WSL 2 + Docker no canal Full Cycle**: [https://www.youtu
 * [Docker Toolbox](#docker-toolbox).
 * [Docker Desktop com Hyper-V](#docker-desktop-com-hyper-v).
 * [Docker Desktop com WSL2](#docker-desktop-com-wsl2).
-* [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#docker-engine-(docker-nativo)-diretamente-instalado-no-wsl2).
+* [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#docker-engine-docker-nativo-diretamente-instalado-no-wsl2).
 
 ### Docker Toolbox
 
@@ -76,7 +76,7 @@ Temos a grande vantagem de se trabalhar totalmente dentro do Linux para desenvol
 * Adiciona infraestrutura complexa para executar Docker, quando se necessita apenas de rodar os containers Docker dentro de um WSL 2 apenas.
 
 
-### Docker Engine (Docker Nativo) diretamente instalado no WSL2.
+### <a id="docker-engine-docker-nativo-diretamente-instalado-no-wsl2"></a>Docker Engine (Docker Nativo) diretamente instalado no WSL2.
 
 O Docker Engine é o Docker nativo que roda no ambiente Linux e completamente suportado para WSL 2. Sua instalação é idêntica a descrita para as próprias distribuições Linux disponibilizadas no site do [Docker](https://docs.docker.com/engine/install/ubuntu/).
 
@@ -193,13 +193,13 @@ Para aplicar estas configurações é necessário reiniciar as distribuições L
 
 No início deste tutorial vimos [4 modos de usar Docker no Windows](#modos-de-usar-docker-no-windows), mas somente 2 são recomendamos:
 
-* [Docker Desktop com WSL2](#docker-desktop-com-wsl2).
-* [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#docker-engine-(docker-nativo)-diretamente-instalado-no-wsl2).
+* [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#instalar-o-docker-com-docker-engine-docker-nativo).
+* [Docker Desktop com WSL2](#instalar-o-docker-com-docker-desktop).
 
 Recomendamos que escolha a 2ª opção pelos seus benefícios, já que a maioria das pessoas poderão usar o WSL 2 como ferramenta central para desenvolvimento. Mas, neste tutorial vamos mostrar as duas forma de instação.
 
 
-### 1 - Instalar o Docker com Docker Engine (Docker Nativo)
+### <a id="instalar-o-docker-com-docker-engine-docker-nativo"></a>1 - Instalar o Docker com Docker Engine (Docker Nativo)
 
 A instalação do Docker no WSL 2 é idêntica a instalação do Docker em sua própria distribuição Linux, portanto se você tem o Ubuntu é igual ao Ubuntu, se é Fedora é igual ao Fedora. A documentação de instalação do Docker no Linux por distribuição está [aqui](https://docs.docker.com/engine/install/), mas vamos ver como instalar no Ubuntu.
 
@@ -260,7 +260,7 @@ Este comando acima terá que ser executado toda vez que Linux for reiniciado. Se
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 ```
 
-### 2 - Instalar o Docker com Docker Desktop
+### <a id="instalar-o-docker-com-docker-desktop"></a>2 - Instalar o Docker com Docker Desktop
 
 Baixe neste link: [https://hub.docker.com/editions/community/docker-ce-desktop-windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows) e instale o Docker Desktop.
 
