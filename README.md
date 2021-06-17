@@ -196,12 +196,21 @@ No início deste tutorial vimos [4 modos de usar Docker no Windows](#modos-de-us
 * [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#instalar-o-docker-com-docker-engine-docker-nativo).
 * [Docker Desktop com WSL2](#instalar-o-docker-com-docker-desktop).
 
-Recomendamos que escolha a 2ª opção pelos seus benefícios, já que a maioria das pessoas poderão usar o WSL 2 como ferramenta central para desenvolvimento. Mas, neste tutorial vamos mostrar as duas forma de instação.
+Recomendamos que escolha a 1ª opção pelos seus benefícios, já que a maioria das pessoas poderão usar o WSL 2 como ferramenta central para desenvolvimento. Mas, neste tutorial vamos mostrar as duas forma de instalação.
 
 
 ### <a id="instalar-o-docker-com-docker-engine-docker-nativo"></a>1 - Instalar o Docker com Docker Engine (Docker Nativo)
 
 A instalação do Docker no WSL 2 é idêntica a instalação do Docker em sua própria distribuição Linux, portanto se você tem o Ubuntu é igual ao Ubuntu, se é Fedora é igual ao Fedora. A documentação de instalação do Docker no Linux por distribuição está [aqui](https://docs.docker.com/engine/install/), mas vamos ver como instalar no Ubuntu.
+
+```
+Quem está migrando de Docker Desktop para Docker Engine, temos duas opções
+
+1. Desinstalar o Docker Desktop.
+2. Desativar o Docker Desktop Service nos serviços do Windows. Esta opção permite que você utilize o Docker Desktop, se necessário, para a maioria dos usuários a desinstalação do Docker Desktop é a mais recomendada.
+
+Se você escolheu a 2º opção, precisará excluir o arquivo ~/.docker/config.json e realizar a autenticação com Docker novamente através do comando "docker login"
+```
 
 Instale os pré-requisitos:
 
