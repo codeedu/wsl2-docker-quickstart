@@ -203,14 +203,22 @@ Recomendamos que escolha a 1ª opção pelos seus benefícios, já que a maioria
 
 A instalação do Docker no WSL 2 é idêntica a instalação do Docker em sua própria distribuição Linux, portanto se você tem o Ubuntu é igual ao Ubuntu, se é Fedora é igual ao Fedora. A documentação de instalação do Docker no Linux por distribuição está [aqui](https://docs.docker.com/engine/install/), mas vamos ver como instalar no Ubuntu.
 
-```
-Quem está migrando de Docker Desktop para Docker Engine, temos duas opções
 
-1. Desinstalar o Docker Desktop.
-2. Desativar o Docker Desktop Service nos serviços do Windows. Esta opção permite que você utilize o Docker Desktop, se necessário, para a maioria dos usuários a desinstalação do Docker Desktop é a mais recomendada.
+> **Quem está migrando de Docker Desktop para Docker Engine, temos duas opções**
+> 1. Desinstalar o Docker Desktop.
+> 2. Desativar o Docker Desktop Service nos serviços do Windows. Esta opção permite que você utilize o Docker Desktop, se necessário, para a maioria dos usuários a desinstalação do Docker Desktop é a mais recomendada.
+>Se você escolheu a 2º opção, precisará excluir o arquivo ~/.docker/config.json e realizar a autenticação com Docker novamente através do comando "docker login"
 
-Se você escolheu a 2º opção, precisará excluir o arquivo ~/.docker/config.json e realizar a autenticação com Docker novamente através do comando "docker login"
-```
+> **Se necessitar integrar o Docker com outras IDEs que não sejam o VSCode**
+>
+> O VSCode já se integra com o Docker no WSL desta forma através da extensão Remote WSL ou Remote Container.
+> 
+> É necessário habilitar a conexão ao servidor do Docker via TCP. Vamos aos passos:
+> 1. Crie o arquivo /etc/docker/daemon.json: `sudo echo '{"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]}' > /etc/docker/daemon.json`
+> 2. Reinicie o Docker: `sudo service docker restart`
+> 
+> Após este procedimento, vá na sua IDE e para conectar ao Docker escolha a opção TCP Socket e coloque a URL `http://IP-DO-WSL:2375`. Seu IP do WSL pode ser encontrado com o comando `cat /etc/resolv.conf`.
+
 
 Instale os pré-requisitos:
 
