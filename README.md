@@ -218,6 +218,8 @@ A instalação do Docker no WSL 2 é idêntica a instalação do Docker em sua p
 > 2. Reinicie o Docker: `sudo service docker restart`
 > 
 > Após este procedimento, vá na sua IDE e para conectar ao Docker escolha a opção TCP Socket e coloque a URL `http://IP-DO-WSL:2375`. Seu IP do WSL pode ser encontrado com o comando `cat /etc/resolv.conf`.
+> 
+> Se caso não funcionar, reinicie o WSL com o comando `wsl --shutdown` e inicie o serviço do Docker novamente.
 
 
 Instale os pré-requisitos:
