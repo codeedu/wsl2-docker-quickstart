@@ -312,6 +312,30 @@ Habilite `Enable integration with my default WSL distro` e habilite sua versão 
 echo 1 | sudo tee /proc/sys/vm/drop_caches
 ```
 * Acrescente `export DOCKER_BUILDKIT=1` no final do arquivo .profile do seu usuário do Linux para ganhar mais performance ao realizar builds com Docker. Execute o comando `source ~/.profile` para carregar esta variável de ambiente no ambiente do seu WSL 2.
+* Caso queira automatizar a inicialização do docker(pode-se iniciar outros serviços também), descrito na seção de desvantagens da utilização do docker nativo, enquanto não é inculído o wsl.conf, você pode configurar uma tarefa no windows para executar comandos no wsl, veja o tutorial a seguir, [WSL 2: Run Ubuntu Services on Windows 10 Startup](https://techbrij.com/wsl-2-ubuntu-services-windows-10-startup), substituindo o conteúdo do arquivo /etc/init-wsl, por um dos exemplos abaixo:
+
+Exemplo de inicialização do serviço do docker
+```bash
+  #!/bin/sh
+  #Mensagem de Inicialização dos seviços
+  echo initializing services
+  #Inicializa o serviço do docker
+  service docker start
+```
+
+Exemplo gerando um log na Área de trabalho
+```bash
+  #!/bin/sh
+  #Grava a data/hora de início da execução no log
+  date +%d/%m/%Y%t%H:%M:%S >> /mnt/c/Users/seu-usuario-do-windows/Desktop/wsl_start.log
+  #Grava mensagem de Inicialização dos seviços no log
+  echo initializing services >> /mnt/c/Users/seu-usuario-do-windows/Desktop/wsl_start.log
+  #Inicializa o serviço do docker e grava o resultado do comando no log
+  service docker start >> /mnt/c/Users/seu-usuario-do-windows/Desktop/wsl_start.log
+  #Verifica o status do serviço do docker e grava o resultado do comando no log
+  service docker status >> /mnt/c/Users/seu-usuario-do-windows/Desktop/wsl_start.log
+```
+* Infelizmente, caso reinicie o WSL manualmente, será necessário reiniciar os serviços manualmente, ou executar o init-wsl manualmente.
 
 ## Dúvidas
 
