@@ -233,7 +233,6 @@ sudo apt-get install \
     curl \
     gnupg \
     lsb-release
-
 ```
 
 Adicione o repositório do Docker na lista de sources do Ubuntu:
@@ -249,8 +248,9 @@ Instale o Docker Engine
 
 ```
 sudo apt-get update
+```
+```
 sudo apt-get install docker-ce docker-ce-cli containerd.io
-
 ```
 
 Dê permissão para rodar o Docker com seu usuário corrente:
