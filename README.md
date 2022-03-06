@@ -18,7 +18,7 @@ Em 2019, a Microsoft anunciou o **WSL 2**, com uma dinâmica aprimorada em rela�
 
 O WSL 2 foi lançado oficialmente no dia 28 de maio de 2020.
 
-Com WSL 2 é possível executar Docker no Linux usando o Windows 10.
+Com WSL 2 é possível executar Docker no Linux usando o Windows 10/11.
 
 Compare as versões: [https://docs.microsoft.com/pt-br/windows/wsl/compare-versions](https://docs.microsoft.com/pt-br/windows/wsl/compare-versions)
 
@@ -50,7 +50,7 @@ O desempenho do Docker Toolbox para muitas aplicações/ferramentas pode ser mui
 
 ### Docker Desktop com Hyper-V
 
-Roda em cima do **Hyper-V** da Microsoft em vez de usar o VirtualBox usando pelo Docker Toolbox. O Docker Desktop com Hyper-V necessita da versão **PRO** do Windows 10, portanto é necessário compra-la se você não a tem.
+Roda em cima do **Hyper-V** da Microsoft em vez de usar o VirtualBox usando pelo Docker Toolbox. O Docker Desktop com Hyper-V necessita da versão **PRO** do Windows 10/11, portanto é necessário compra-la se você não a tem.
 
 O Hyper-V costuma requerer muitos recursos da máquina e apesar do desempenho ser melhor que o Docker Toolbox, a máquina pode ficar lenta para se utilizar outras coisas no Windows.
 
@@ -58,7 +58,7 @@ O Hyper-V costuma requerer muitos recursos da máquina e apesar do desempenho se
 
 ### Docker Desktop com WSL2
 
-Roda em cima do **Virtual Machine Platform** em vez de usar o VirtualBox ou Hyper-V. Se integra com o WSL2 permitindo rodar o Docker dentro do ambiente do Linux. Não é necessário adquirir licença PRO do Windows 10, tem um grande desempenho e consome menos recursos quando comparado ao Docker Toolbox ou Docker Desktop com Hyper-V.
+Roda em cima do **Virtual Machine Platform** em vez de usar o VirtualBox ou Hyper-V. Se integra com o WSL2 permitindo rodar o Docker dentro do ambiente do Linux. Não é necessário adquirir licença PRO do Windows 10/11, tem um grande desempenho e consome menos recursos quando comparado ao Docker Toolbox ou Docker Desktop com Hyper-V.
 
 Temos a grande vantagem de se trabalhar totalmente dentro do Linux para desenvolvimento, portanto, usar WSL2 + Docker é a melhor maneira de se desenvolver aplicações no Windows.
 
@@ -93,15 +93,14 @@ O Docker Engine é o Docker nativo que roda no ambiente Linux e completamente su
 
 ## Requisitos mínimos
 
-* Windows 10 Home ou Professional.
+* Windows 10 Home ou Professional 
+  - Versão 1903 ou superior para sistemas x64, com Build 18362 ou superior.
+  - Versão 2004 ou superior para sistemas ARM64, com Build 19041 ou superior.
 
-* Versão do Windows (Pode ser que seu Windows 10 já seja igual ou superior a 20.04, verifique isto acessando o `menu de notificações perto do relógio > Todas as configurações > Sistema > Sobre`.):
+* Windows 11 Home ou Professional
+  - Versão 22000 ou superior.
 
-  - Para sistemas x64: Versão 1903 ou superiores, com o Build 18362 ou superiores.
-  
-  - Para sistemas ARM64: Versão 2004 ou superiores, com o Build 19041 ou superiores.
-  
-  - Os builds inferiores a 18362 não dão suporte a WSL 2. Use o Assistente do Windows Update para atualizar a sua versão do Windows.
+Provavelmente seu Windows já está na versão suportada, mas verifique isto acessando o `menu de notificações perto do relógio > Todas as configurações > Sistema > Sobre`. Caso não esteja, use o Assistente do Windows Update para atualizar a sua versão do Windows.
 
 
 * Uma máquina compatível com virtualização (verifique a disponibilidade de acordo com a marca do seu processador. Se sua máquina for mais antiga pode ser necessária habilita-la na BIOS).
@@ -109,7 +108,7 @@ O Docker Engine é o Docker nativo que roda no ambiente Linux e completamente su
 
 ## Instalação do WSL 2
 
-### Habilite o WSL no Windows 10
+### Habilite o WSL no Windows 10/11
 
 Execute os seguintes comandos no PowerShell em modo administrador:
 ``` bash
@@ -118,7 +117,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 ```
 Abra o PowerShell e digite o comando `wsl`, se não funcionar reinicie sua máquina.
 
-### Instale o WSL 2 no Windows 10
+### Instale o WSL 2 no Windows 10/11
 
 Baixe o Kernel do WSL 2 neste link: [https://docs.microsoft.com/pt-br/windows/wsl/wsl2-kernel](https://docs.microsoft.com/pt-br/windows/wsl/wsl2-kernel) e instale o pacote.
 
@@ -279,6 +278,23 @@ Este comando acima terá que ser executado toda vez que Linux for reiniciado. Se
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 ```
 
+#### Dica para Windows 11
+
+No Windows 11 é possível especificar um comando padrão para ser executados sempre que o WSL for iniciado, isto permite que já coloquemos o serviço do docker para iniciar automaticamente. Edite o arquivo `/etc/wsl.conf`:
+
+Rode o comando para editar:
+
+`sudo vim /etc/wsl.conf`
+
+Aperte a letra `i` e cole o conteúdo:
+
+```conf
+[boot]
+command="service docker start" 
+```
+
+Aperte a tecla `:`, digite `wq` para salvar/sair e pressione enter. Pronto, para reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell para testar. Após abrir o WSL novamente, digite o comando `docker ps` para avaliar se o comando não retorna a mensagem acima: `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
+
 ### <a id="instalar-o-docker-com-docker-desktop"></a>2 - Instalar o Docker com Docker Desktop
 
 Baixe neste link: [https://hub.docker.com/editions/community/docker-ce-desktop-windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows) e instale o Docker Desktop.
@@ -294,7 +310,7 @@ Habilite `Enable integration with my default WSL distro` e habilite sua versão 
 
 * A performance do WSL 2 está em se executar tudo dentro do Linux, por isso evite executar seus projetos com ou sem Docker do caminho `/mnt/c`, pois você perderá performance.
 * Para abrir o terminal do WSL basta digitar o nome da distribuição no menu Iniciar ou executar `C:\Windows\System32\wsl.exe`.
-* O sistema de arquivos do Windows 10 é acessível em `/mnt`.
+* O sistema de arquivos do Windows 10/11 é acessível em `/mnt`.
 ![Mount no WSL2](img/mount_no_wsl2.png)
 * É possível acessar o sistema de arquivos do Linux pela rede do Windows, digite `\\wsl$` no Windows Explorer.
 ![Acessando WSL2 no Windows Explorer](img/acessando_wsl2_no_explorer.png)
@@ -336,6 +352,7 @@ Exemplo gerando um log na Área de trabalho
   service docker status >> /mnt/c/Users/seu-usuario-do-windows/Desktop/wsl_start.log
 ```
 * Infelizmente, caso reinicie o WSL manualmente, será necessário reiniciar os serviços manualmente, ou executar o init-wsl manualmente.
+* No Windows 11 é possível iniciar o Docker automaticamente, veja a seção: [Dica para Windows 11](#dica-para-windows-11)
 
 ## Dúvidas
 
