@@ -190,7 +190,7 @@ Para aplicar estas configurações é necessário reiniciar as distribuições L
 
 ## Integrar Docker com WSL 2
 
-No início deste tutorial vimos [4 modos de usar Docker no Windows](#modos-de-usar-docker-no-windows), mas somente 2 são recomendamos:
+No início deste tutorial vimos [4 modos de usar Docker no Windows](#modos-de-usar-docker-no-windows), mas somente 2 que recomendamos:
 
 * [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#instalar-o-docker-com-docker-engine-docker-nativo).
 * [Docker Desktop com WSL2](#instalar-o-docker-com-docker-desktop).
