@@ -161,7 +161,7 @@ Uma deficiência que o Windows sempre teve era prover um terminal adequado para 
 
 Instale-o pelo Windows Store e use estas [configurações padrões](windows-terminal-settings.json) para habilitar WSL 2, Git Bash e o tema drácula e alguns atalhos.
 
-Para sobrescrever as configurações **clique a seta para baixo do lado das abas e em configurações**, abrirá as configurações do Windows Terminal, apenas cole o conteúdo do arquivo JSON e salve.
+Para sobrescrever as configurações **clique a seta para baixo do lado das abas e em configurações**, abrirá as configurações do Windows Terminal, apenas cole o conteúdo do arquivo JSON e salve, após isso clique em `Perfis`, clique sobre `Diretório inicial` e altere o caminho para: `(\\wsl$\Ubuntu\home\SEU_USUÁRIO_UBUNTU)`.
 
 ## O que o WSL 2 pode usar de recursos da sua máquina
 
