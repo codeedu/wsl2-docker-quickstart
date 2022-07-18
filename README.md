@@ -131,7 +131,7 @@ wsl --set-default-version 2
 
 ### Escolha sua distribuição Linux no Windows Store
 
-Escolha sua distribuição Linux preferida no aplicativo Windows Store, sugerimos o Ubuntu por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
+Escolha sua distribuição Linux preferida no aplicativo Windows Store, sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
 
 ![Distribuições Linux no Windows Store](img/distribuicoes_linux.png)
 
@@ -249,7 +249,7 @@ Instale o Docker Engine
 sudo apt-get update
 ```
 ```
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
 Dê permissão para rodar o Docker com seu usuário corrente:
@@ -258,25 +258,29 @@ Dê permissão para rodar o Docker com seu usuário corrente:
 sudo usermod -aG docker $USER
 ```
 
-Instale o Docker Compose:
-
-```
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-```
-
 Inicie o serviço do Docker:
 
 ```
 sudo service docker start
 ```
 
-Este comando acima terá que ser executado toda vez que Linux for reiniciado. Se caso o serviço do Docker não estiver executando, mostrará esta mensagem de erro:
+Este comando acima terá que ser executado toda vez que Linux for reiniciado. Se caso o serviço do Docker não estiver executando, mostrará esta mensagem de erro ao rodar comando `docker`:
 
 ```
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 ```
+
+O Docker Compose instalado agora estará na versão 2, para executa-lo em vez de `docker-compose` use `docker compose`.
+
+### Erro ao iniciar o Docker no Ubuntu 22.04
+
+> Se mesmo ao iniciar o serviço do Docker acontecer o seguinte erro ou similar:
+>
+> `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
+> Rode o comando `sudo update-alternatives --config iptables` e escolha a opção 1 `iptables-legacy`
+>
+> Rode novamente o `sudo service docker start`. Rode algum comando Docker como `docker ps` para verificar se está funcionando corretamente. Se não mostrar o erro acima, está ok.
+
 
 #### Dica para Windows 11
 
