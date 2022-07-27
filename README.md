@@ -108,7 +108,9 @@ Provavelmente seu Windows já está na versão suportada, mas verifique isto ace
 
 ## Instalação do WSL 2
 
-### Habilite o WSL no Windows 10/11
+> Windows 10
+
+### Habilitar o Virtual Machine Platform
 
 Execute os seguintes comandos no PowerShell em modo administrador:
 ``` bash
@@ -117,11 +119,11 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 ```
 Abra o PowerShell e digite o comando `wsl`, se não funcionar reinicie sua máquina.
 
-### Instale o WSL 2 no Windows 10/11
+### Instalar o executável do WSL
 
 Baixe o Kernel do WSL 2 neste link: [https://docs.microsoft.com/pt-br/windows/wsl/wsl2-kernel](https://docs.microsoft.com/pt-br/windows/wsl/wsl2-kernel) e instale o pacote.
 
-### Atribua a versão default do WSL para a versão 2
+### Atribuir a versão default do WSL para a versão 2
 
 A versão 1 do WSL é a padrão no momento, atribua a versão default para a versão 2, assim todas as distribuições Linux instaladas serão já por default da versão 2. Execute o comando com o PowerShell:
 
@@ -129,9 +131,23 @@ A versão 1 do WSL é a padrão no momento, atribua a versão default para a ver
 wsl --set-default-version 2
 ```
 
+> Windows 11
+
+Execute o comando:
+
+```bash
+wsl --install
+```
+
+Este comando irá instalar todas as dependências do WSL instalando o `Ubuntu` como o Linux padrão. 
+
+Se você quiser instalar uma versão diferente do Ubuntu, execute o comando `wsl -l -o`, será listado todas as versões de Linux disponíveis. Instale a versão escolhida com o comando `wsl --install -d nome-da-distribuicao`.
+
+sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
+
 ### Escolha sua distribuição Linux no Windows Store
 
-Escolha sua distribuição Linux preferida no aplicativo Windows Store, sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
+Também é possível instalar distribuições Linux pelo Windows Store. Escolha sua distribuição Linux preferida no aplicativo Windows Store, sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
 
 ![Distribuições Linux no Windows Store](img/distribuicoes_linux.png)
 
