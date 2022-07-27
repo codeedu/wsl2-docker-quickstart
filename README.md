@@ -108,7 +108,7 @@ Provavelmente seu Windows já está na versão suportada, mas verifique isto ace
 
 ## Instalação do WSL 2
 
-> Windows 10
+> ## Windows 10
 
 ### Habilitar o Virtual Machine Platform
 
@@ -131,7 +131,15 @@ A versão 1 do WSL é a padrão no momento, atribua a versão default para a ver
 wsl --set-default-version 2
 ```
 
-> Windows 11
+### (Opcional) Alterar a versão do WSL 1 de uma distribuição para a versão 2
+
+Se você já tiver o WSL 1 na máquina e acabou de instalar a versão 2, pode-se converter sua distribuição Linux WSL 1 para WSL 2, execute o comando com o PowerShell:
+
+``` bash
+wsl --set-version <distribution name> 2
+```
+
+> ## Windows 11
 
 Execute o comando:
 
@@ -145,7 +153,7 @@ Se você quiser instalar uma versão diferente do Ubuntu, execute o comando `wsl
 
 sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
 
-### Escolha sua distribuição Linux no Windows Store
+## Escolha sua distribuição Linux no Windows Store
 
 Também é possível instalar distribuições Linux pelo Windows Store. Escolha sua distribuição Linux preferida no aplicativo Windows Store, sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas instaladas por padrão.
 
@@ -157,21 +165,7 @@ Parabéns, seu WSL2 já está funcionando:
 
 ![Exemplo de WSL2 funcionando](img/wsl2_funcionando.png)
 
-### (Opcional) Desinstale o Hyper-V 
-
-Agora que temos o WSL 2 não precisamos mais do Hyper-V, desabilite-o em Painel de Controle > Programas e Recursos (se você tiver instalado o Hyper-V).
-
-### (Opcional) Alterar a versão do WSL 1 de uma distribuição para a versão 2
-
-Se você já tiver o WSL 1 na máquina e acabou de instalar a versão 2, pode-se converter sua distribuição Linux WSL 1 para WSL 2, execute o comando com o PowerShell:
-
-``` bash
-wsl --set-version <distribution name> 2
-```
-
-Isto pode demorar muitos minutos.
-
-### (Opcional) Usar Windows Terminal como terminal padrão de desenvolvimento para Windows
+## (Opcional) Usar Windows Terminal como terminal padrão de desenvolvimento para Windows
 
 Uma deficiência que o Windows sempre teve era prover um terminal adequado para desenvolvimento. Agora temos o **Windows Terminal** construído pela própria Microsoft que permite rodar terminais em abas, alterar cores e temas, configurar atalhos e muito mais.
 
