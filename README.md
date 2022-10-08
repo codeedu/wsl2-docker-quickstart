@@ -83,7 +83,7 @@ O Docker Engine é o Docker nativo que roda no ambiente Linux e completamente su
 #### Vantagens
 
 * Consume o mínimo de memória necessário para rodar o Docker Daemon (servidor do Docker).
-* É mais rápido ainda que com Docker Desktop, porque rodar diretamente dentro da própria instância do WSL2 e não em uma instância separada de Linux.
+* É mais rápido ainda que com Docker Desktop, porque roda diretamente dentro da própria instância do WSL2 e não em uma instância separada de Linux.
 
 #### Desvantagens
 
