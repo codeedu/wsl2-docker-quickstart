@@ -300,14 +300,14 @@ Rode o comando para editar:
 
 `sudo vim /etc/wsl.conf`
 
-Aperte a letra `i` e cole o conteúdo:
+Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o conteúdo:
 
 ```conf
 [boot]
 command="service docker start" 
 ```
 
-Aperte a tecla `:`, digite `wq` para salvar/sair e pressione enter. Pronto, para reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell para testar. Após abrir o WSL novamente, digite o comando `docker ps` para avaliar se o comando não retorna a mensagem acima: `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
+Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`. Pronto, para reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell para testar. Após abrir o WSL novamente, digite o comando `docker ps` para avaliar se o comando não retorna a mensagem acima: `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
 
 ### <a id="instalar-o-docker-com-docker-desktop"></a>2 - Instalar o Docker com Docker Desktop
 
