@@ -4,6 +4,8 @@
 
 # Guia rápido do WSL2 + Docker
 
+*Read this in other language: [English](README.en.md)
+
 ## O que é o WSL2 
 
 Em 2016, a Microsoft anunciou a possibilidade de rodar o Linux dentro do Windows 10 como um subsistema e o nome a isto foi dado de **WSL** ou **Windows Subsystem for Linux**.
