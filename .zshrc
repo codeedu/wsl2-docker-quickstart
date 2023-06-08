@@ -1,64 +1,22 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Start or enter a PID namespace in WSL2
-#source /usr/sbin/start-systemd-namespace
-#source ~/kubectl-auto-suggestion
-
 # Path to your oh-my-zsh installation.
-export ZSH="/home/argen/.oh-my-zsh"
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
-export PATH="$PATH:/snap/bin"
+export ZSH="$HOME/.oh-my-zsh"
+export PATH=$PATH:/usr/local/go/bin:~/go/bin
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-SOBOLE_THEME_MODE=dark
-
-SPACESHIP_PROMPT_ORDER=(
-    #time          # Time stamps section
-  #user          # Username section
-  dir           # Current directory section
-  #host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  #hg            # Mercurial section (hg_branch  + hg_status)
-  #package       # Package version
-  #gradle        # Gradle section
-  #maven         # Maven section
-  #node          # Node.js section
-  #ruby          # Ruby section
-  #elixir        # Elixir section
-  #xcode         # Xcode section
-  #swift         # Swift section
-  #golang        # Go section
-  #php           # PHP section
-  #rust          # Rust section
-  #haskell       # Haskell Stack section
-  #julia         # Julia section
-  #docker        # Docker section
-  #aws           # Amazon Web Services section
-  #gcloud        # Google Cloud Platform section
-  #venv          # virtualenv section
-  #conda         # conda virtualenv section
-  #pyenv         # Pyenv section
-  #dotnet        # .NET section
-  #ember         # Ember.js section
-  #kubectl       # Kubectl context section
-  #terraform     # Terraform workspace section
-  #exec_time     # Execution time
-  line_sep      # Line break
-  #battery       # Battery level and status
-  #vi_mode       # Vi-mode indicator
-  #jobs          # Background jobs indicator
-  #exit_code     # Exit code section
-  char          # Prompt character
-)
-SPACESHIP_DIR_TRUNC=0
-SPACESHIP_DIR_TRUNC_REPO=false
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -72,14 +30,13 @@ SPACESHIP_DIR_TRUNC_REPO=false
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -94,6 +51,9 @@ SPACESHIP_DIR_TRUNC_REPO=false
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -146,6 +106,18 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export DOCKER_BUILDKIT=1
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. $HOME/.asdf/asdf.sh
+
+
 alias dockerrm='docker rm $(docker ps -a -q)'
 alias dockerstop='docker stop $(docker ps -a -q)'
 alias serverblog='ssh forge@159.89.86.23 -i ~/.ssh/server-digital-ocean.key'
@@ -153,39 +125,26 @@ alias servercode='ssh forge@206.189.255.17 -i ~/.ssh/server-digital-ocean.key'
 alias serverson='ssh forge@138.197.227.120 -i ~/.ssh/server-digital-ocean.key'
 alias ssh-load='eval $(ssh-agent -s)'
 alias nvm="unalias nvm; [ -s ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh; nvm"
-#alias kubectl='microk8s kubectl'
-#alias kubectltoken="/snap/bin/microk8s kubectl -n kube-system describe secret $(/snap/bin/microk8s kubectl -n kube-system get secret | grep default-token | cut -d ' ' -f1)"
-#alias kubectldashboard="/snap/bin/microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443"
+alias gfw='git flow'
+alias rmnodemodules="find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \;"
+alias rmdbdata='sudo find . -name '\''dbdata'\'' -type d -prune -print -exec rm -rf '\''{}'\'' \;'
+alias rmnext='sudo find . -name '\''.next'\'' -type d -prune -print -exec rm -rf '\''{}'\'' \;'
+alias rmdist='sudo find . -name '\''dist'\'' -type d -prune -print -exec rm -rf '\''{}'\'' \;'
+alias wslip="sudo ip addr add 192.168.99.2/24 broadcast 192.168.99.255 dev eth0 label eth0:1;"
+alias k="kubectl"
+alias removeduplicates="cat -n ~/.zsh_history | sort -t ';' -uk2 | sort -nk1 | cut -f2- > ./.zsh_short_history"
 
-alias k=kubectl
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+if [ -n "$LENS_SESSION" ]; then
+        c=$(kubectl config current-context)
+        export KUBECONFIG=""
+        kubectl config use-context "$c"
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
+export WAYLAND_DISPLAY="wayland-1"
+#setxkbmap -model abnt -layout us -variant intl
+setxkbmap -model logitech_base -layout us -variant intl
+#setxkbmap -model abnt -layout us -variant altgr-intl
 
-### End of Zinit's installer chunk
-#export NVM_DIR="$HOME/.nvm"
-#[[ -f "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --fast-reuse
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
-
-export DOCKER_BUILDKIT=1
+export K9S_EDITOR=nvim
