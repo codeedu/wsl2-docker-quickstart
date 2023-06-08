@@ -1,18 +1,11 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "alwaysOnTop": false,
-    "copyFormatting": "none",
-    "copyOnSelect": true,
-    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-    // Add custom keybindings to this array.
-    // To unbind a key combination from your defaults.json, set the command to "unbound".
-    // To learn more about keybindings, visit https://aka.ms/terminal-keybindings
-    "keybindings": [
-        // Copy and paste are bound to Ctrl+Shift+C and Ctrl+Shift+V in your defaults.json.
-        // These two lines additionally bind them to Ctrl+C and Ctrl+V.
-        // To learn more about selection, visit https://aka.ms/terminal-selection
+    "actions": 
+    [
         {
-            "command": {
+            "command": 
+            {
                 "action": "copy",
                 "singleLine": false
             },
@@ -22,37 +15,43 @@
             "command": "paste",
             "keys": "ctrl+v"
         },
-        // Press Ctrl+Shift+F to open the search box
+        {
+            "command": "duplicateTab",
+            "keys": "ctrl+f3"
+        },
+        {
+            "command": 
+            {
+                "action": "newTab"
+            },
+            "keys": "ctrl+f1"
+        },
         {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
-        // Press Alt+Shift+D to open a new pane.
-        // - "split": "auto" makes this pane open in the direction that provides the most surface area.
-        // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
-        // To learn more about panes, visit https://aka.ms/terminal-panes
         {
-            "command": {
+            "command": 
+            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": "newTab",
-            "keys": "ctrl+f1"
-        },
-        {
-            "command": "duplicateTab",
-            "keys": "ctrl+f3"
         }
     ],
-    "profiles": {
-        "defaults": {
+    "alwaysOnTop": false,
+    "copyFormatting": "none",
+    "copyOnSelect": true,
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+    "profiles": 
+    {
+        "defaults": 
+        {
             "colorScheme": "Dracula"
         },
-        "list": [
+        "list": 
+        [
             {
                 "commandline": "C:\\Program Files\\Git\\bin\\bash.exe -login -i",
                 "guid": "{73225108-7633-47ae-80c1-5d00111ef646}",
@@ -62,8 +61,11 @@
                 "startingDirectory": "%USERPROFILE%"
             },
             {
-                "fontFace": "JetBrains Mono",
-                "fontSize": 11,
+                "font": 
+                {
+                    "face": "MesloLGS NF",
+                    "size": 11
+                },
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "name": "Ubuntu",
@@ -71,13 +73,11 @@
                 "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\argen\\"
             },
             {
-                "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Prompt de comando"
@@ -93,10 +93,64 @@
                 "hidden": false,
                 "name": "Ubuntu-20.04",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{20f38a4b-26ad-54d9-aec9-7c1c28b32b4b}",
+                "hidden": false,
+                "name": "Ubuntu-Old",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{659fb644-3252-552c-bab8-b2124f7d97b9}",
+                "hidden": false,
+                "name": "Ubuntu-Test",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
+                "hidden": true,
+                "name": "Ubuntu-22.04",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{f9ceaf27-504c-58d7-927c-d1d6a7ac7d3c}",
+                "hidden": false,
+                "name": "Ubuntu 22.04.1 LTS",
+                "source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc"
+            },
+            {
+                "guid": "{94fdb6eb-31c6-5aaa-bac5-8161e463d3f7}",
+                "hidden": false,
+                "name": "Ubuntu-Backup",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
-    "schemes": [
+    "schemes": 
+    [
+        {
+            "background": "#111416",
+            "black": "#000000",
+            "blue": "#1093F5",
+            "brightBlack": "#404040",
+            "brightBlue": "#11B5F6",
+            "brightCyan": "#00FFFF",
+            "brightGreen": "#00FF00",
+            "brightPurple": "#FF00FF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFF00",
+            "cursorColor": "#BBBBBB",
+            "cyan": "#00CDCD",
+            "foreground": "#EEEEEC",
+            "green": "#00CD00",
+            "name": "Abernathy",
+            "purple": "#CD00CD",
+            "red": "#CD0000",
+            "selectionBackground": "#EEEEEC",
+            "white": "#FAEBD7",
+            "yellow": "#CDCD00"
+        },
         {
             "background": "#212121",
             "black": "#151515",
@@ -305,27 +359,142 @@
             "yellow": "#E5E510"
         },
         {
-            "name": "Dracula",
-            "black": "#21222c",
-            "red": "#ff5555",
-            "green": "#50fa7b",
-            "yellow": "#ffcb6b",
-            "blue": "#82aaff",
-            "purple": "#c792ea",
-            "cyan": "#8be9fd",
-            "white": "#f8f8f2",
-            "brightBlack": "#545454",
-            "brightRed": "#ff6e6e",
-            "brightGreen": "#69ff94",
-            "brightYellow": "#ffcb6b",
-            "brightBlue": "#d6acff",
-            "brightPurple": "#ff92df",
-            "brightCyan": "#a4ffff",
-            "brightWhite": "#f8f8f2",
             "background": "#212121",
-            "foreground": "#f8f8f2",
-            "selectionBackground": "#f8f8f2",
-            "cursorColor": "#eceff4"
+            "black": "#21222C",
+            "blue": "#82AAFF",
+            "brightBlack": "#545454",
+            "brightBlue": "#D6ACFF",
+            "brightCyan": "#A4FFFF",
+            "brightGreen": "#69FF94",
+            "brightPurple": "#FF92DF",
+            "brightRed": "#FF6E6E",
+            "brightWhite": "#F8F8F2",
+            "brightYellow": "#FFCB6B",
+            "cursorColor": "#ECEFF4",
+            "cyan": "#8BE9FD",
+            "foreground": "#F8F8F2",
+            "green": "#50FA7B",
+            "name": "Dracula",
+            "purple": "#C792EA",
+            "red": "#FF5555",
+            "selectionBackground": "#F8F8F2",
+            "white": "#F8F8F2",
+            "yellow": "#FFCB6B"
+        },
+        {
+            "background": "#232322",
+            "black": "#212121",
+            "blue": "#134EB2",
+            "brightBlack": "#424242",
+            "brightBlue": "#54A4F3",
+            "brightCyan": "#26BBD1",
+            "brightGreen": "#7ABA3A",
+            "brightPurple": "#AA4DBC",
+            "brightRed": "#E83B3F",
+            "brightWhite": "#D9D9D9",
+            "brightYellow": "#FFEA2E",
+            "cursorColor": "#16AFCA",
+            "cyan": "#0E717C",
+            "foreground": "#E5E5E5",
+            "green": "#457B24",
+            "name": "MaterialDark",
+            "purple": "#560088",
+            "red": "#B7141F",
+            "selectionBackground": "#DFDFDF",
+            "white": "#EFEFEF",
+            "yellow": "#F6981E"
+        },
+        {
+            "background": "#212121",
+            "black": "#000000",
+            "blue": "#82AAFF",
+            "brightBlack": "#545454",
+            "brightBlue": "#82AAFF",
+            "brightCyan": "#89DDFF",
+            "brightGreen": "#C3E88D",
+            "brightPurple": "#C792EA",
+            "brightRed": "#FF5370",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFCB6B",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#89DDFF",
+            "foreground": "#EEFFFF",
+            "green": "#C3E88D",
+            "name": "MaterialDarker",
+            "purple": "#C792EA",
+            "red": "#FF5370",
+            "selectionBackground": "#EEFFFF",
+            "white": "#FFFFFF",
+            "yellow": "#FFCB6B"
+        },
+        {
+            "background": "#121212",
+            "black": "#121212",
+            "blue": "#1080D0",
+            "brightBlack": "#555555",
+            "brightBlue": "#00AFFF",
+            "brightCyan": "#51CEFF",
+            "brightGreen": "#B1E05F",
+            "brightPurple": "#AF87FF",
+            "brightRed": "#F6669D",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFF26D",
+            "cursorColor": "#BBBBBB",
+            "cyan": "#43A8D0",
+            "foreground": "#BBBBBB",
+            "green": "#98E123",
+            "name": "Molokai",
+            "purple": "#8700FF",
+            "red": "#FA2573",
+            "selectionBackground": "#B5D5FF",
+            "white": "#BBBBBB",
+            "yellow": "#DFD460"
+        },
+        {
+            "background": "#403E41",
+            "black": "#403E41",
+            "blue": "#FC9867",
+            "brightBlack": "#727072",
+            "brightBlue": "#FC9867",
+            "brightCyan": "#78DCE8",
+            "brightGreen": "#A9DC76",
+            "brightPurple": "#AB9DF2",
+            "brightRed": "#FF6188",
+            "brightWhite": "#FCFCFA",
+            "brightYellow": "#FFD866",
+            "cursorColor": "#FCFCFA",
+            "cyan": "#78DCE8",
+            "foreground": "#FCFCFA",
+            "green": "#A9DC76",
+            "name": "Monokai Pro",
+            "purple": "#AB9DF2",
+            "red": "#FF6188",
+            "selectionBackground": "#FCFCFA",
+            "white": "#FCFCFA",
+            "yellow": "#FFD866"
+        },
+        {
+            "background": "#0C0C0C",
+            "black": "#1A1A1A",
+            "blue": "#9D65FF",
+            "brightBlack": "#625E4C",
+            "brightBlue": "#9D65FF",
+            "brightCyan": "#58D1EB",
+            "brightGreen": "#98E024",
+            "brightPurple": "#F4005F",
+            "brightRed": "#F4005F",
+            "brightWhite": "#F6F6EF",
+            "brightYellow": "#E0D561",
+            "cursorColor": "#FC971F",
+            "cyan": "#58D1EB",
+            "foreground": "#D9D9D9",
+            "green": "#98E024",
+            "name": "Monokai Remastered",
+            "purple": "#F4005F",
+            "red": "#F4005F",
+            "selectionBackground": "#343434",
+            "white": "#C4C5B5",
+            "yellow": "#FD971F"
         },
         {
             "background": "#121212",
@@ -556,6 +725,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#D3D7CF",
             "yellow": "#C4A000"
+        },
+        {
+            "background": "#300A24",
+            "black": "#171421",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#08458F",
+            "brightCyan": "#2C9FB3",
+            "brightGreen": "#26A269",
+            "brightPurple": "#A347BA",
+            "brightRed": "#C01C28",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#A2734C",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#FFFFFF",
+            "green": "#26A269",
+            "name": "Ubuntu-22.04-ColorScheme",
+            "purple": "#881798",
+            "red": "#C21A23",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#A2734C"
         },
         {
             "background": "#000000",
