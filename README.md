@@ -35,6 +35,8 @@
       - [Erro ao iniciar o Docker no Ubuntu 22.04](#erro-ao-iniciar-o-docker-no-ubuntu-2204)
     - [2 - Instalar o Docker com Docker Desktop](#2---instalar-o-docker-com-docker-desktop)
 - [Dicas e truques básicos com WSL 2](#dicas-e-truques-básicos-com-wsl-2)
+- [Dúvidas](#dúvidas)
+- [Quer dicas como ser mais produtivo no Windows?](#quer-dicas-como-ser-mais-produtivo-no-windows)
 
 
 ## O que é o WSL2 
@@ -400,3 +402,10 @@ echo 1 | sudo tee /proc/sys/vm/drop_caches
 ## Dúvidas
 
 * O WSL 2 funciona junto com outras máquinas virtuais como **VirtualBox** ou **VMWare**? Siga a [referência](https://learn.microsoft.com/pt-br/windows/wsl/faq#poderei-executar-o-wsl-2-e-outras-ferramentas-de-virtualiza--o-de-terceiros--como-vmware-ou-virtualbox-)
+
+## Quer dicas como ser mais produtivo no Windows?
+
+Acesse os tutorias abaixo:
+
+- Configuração de ambiente de desenvolvimento produtivo: [https://github.com/argentinaluiz/ambiente-dev-produtivo](https://github.com/argentinaluiz/ambiente-dev-produtivo)
+- Como montar um ambiente produtivo no VSCode: [https://github.com/argentinaluiz/my-vscode-settings](https://github.com/argentinaluiz/my-vscode-settings)
