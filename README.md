@@ -226,7 +226,7 @@ Tem-se a grande vantagem de se trabalhar totalmente dentro do Linux para desenvo
 * Simplifica a configuração do Docker tanto no Windows quanto no WSL 2.
 * Permite rodar o Docker fora do WSL 2, sendo possível usar qualquer shell como PowerShell ou DOS.
 * Suporta containers em modo Windows (Imagens que contém Windows por debaixo dos panos ao invés de Linux).
-* Cria um ambiente centralizado para armazenamento de imagens, volumes e outros configurações Docker. Pode-se ter várias distribuições do WSL 2 rodando a mesma instância do Docker.
+* Cria um ambiente centralizado para armazenamento de imagens, volumes e outras configurações Docker. Pode-se ter várias distribuições do WSL 2 rodando a mesma instância do Docker.
 * Interface visual para administrar o Docker.
 
 #### <a id="docker-desktop-desvantagens"></a> Desvantagens
@@ -248,7 +248,7 @@ O Docker Engine é o Docker nativo que roda no ambiente Linux e completamente su
 #### <a id="docker-engine-desvantagens"></a> Desvantagens
 
 * Necessário executar o comando ```sudo service docker start``` sempre que o WSL 2 foi reiniciado (Somente para usuários do Windows 10). Isto não é necessariamente uma desvantagem, mas é bom pontuar. Isto é um pequeno detalhe, mas no Windows 11 já é possível iniciar o servidor do Docker automaticamente pelo /etc/wsl.conf (Ver detalhes mais abaixo).
-* Se necessitar executar Docker em outra instância do WSL 2, é necessário instalar novamente o Docker nesta instância ou configurar o acesso ao socket do Docker desejado para compartilhar o Docker entre as instâncias.
+* Se necessitar executar o Docker em outra instância do WSL 2, é necessário instalar novamente o Docker nesta instância ou configurar o acesso ao socket do Docker desejado para compartilhar o Docker entre as instâncias.
 * Não suporta containers no modo Windows.
 
 ### Integrar Docker com WSL 2
@@ -258,7 +258,7 @@ No início deste tutorial vimos [4 modos de usar Docker no Windows](#modos-de-us
 * [Docker Engine (Docker Nativo) diretamente instalado no WSL2](#instalar-o-docker-com-docker-engine-docker-nativo).
 * [Docker Desktop com WSL2](#instalar-o-docker-com-docker-desktop).
 
-Recomendamos que escolha a 1ª opção pelos seus benefícios, já que a maioria das pessoas poderão usar o WSL 2 como ferramenta central para desenvolvimento, mas, neste tutorial vamos mostrar as duas forma de instalação.
+Recomendamos que escolha a 1ª opção pelos seus benefícios, já que a maioria das pessoas poderão usar o WSL 2 como ferramenta central para desenvolvimento, mas, neste tutorial vamos mostrar as duas formas de instalação.
 
 
 ### <a id="instalar-o-docker-com-docker-engine-docker-nativo"></a>1 - Instalar o Docker com Docker Engine (Docker Nativo)
@@ -327,7 +327,7 @@ Inicie o serviço do Docker:
 sudo service docker start
 ```
 
-Este comando acima terá que ser executado toda vez que Linux for reiniciado. Se caso o serviço do Docker não estiver executando, mostrará esta mensagem de erro ao rodar comando `docker`:
+Este comando acima terá que ser executado toda vez que o Linux for reiniciado. Se caso o serviço do Docker não estiver executando, mostrará esta mensagem de erro ao rodar comando `docker`:
 
 ```
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
