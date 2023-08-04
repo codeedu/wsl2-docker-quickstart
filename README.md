@@ -312,7 +312,7 @@ Instale o Docker Engine
 sudo apt-get update
 ```
 ```
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 Dê permissão para rodar o Docker com seu usuário corrente:
