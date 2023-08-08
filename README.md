@@ -321,7 +321,15 @@ Dê permissão para rodar o Docker com seu usuário corrente:
 sudo usermod -aG docker $USER
 ```
 
-Inicie o serviço do Docker:
+
+Reiniciar o WSL via linha de comando do Windows para que não seja necessário autorização root para rodar o comando docker:
+
+```
+wsl --shutdown
+```
+
+
+Acessar novamente o Ubuntu e iniciar o serviço do Docker:
 
 ```
 sudo service docker start
