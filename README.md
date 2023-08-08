@@ -365,9 +365,11 @@ Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o con
 
 ```conf
 [boot]
-command="service docker start" 
+command = service docker start
 ```
 
+> A documentação oficial (https://learn.microsoft.com/en-us/windows/wsl/wsl-config) fornece esse comando em seu exemplo.
+ 
 Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`. 
 
 Pronto, basta reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell para testar. Após abrir o WSL novamente, digite o comando `docker ps` para avaliar se o comando não retorna a mensagem acima: `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
