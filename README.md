@@ -368,7 +368,30 @@ Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o con
 command = service docker start
 ```
 
+Ou caso a distribuição linux possua o systemd configurado o arquivo deverá ser alterado para:
+
+```conf
+[boot]
+systemd = true
+command = systemctl start docker
+```
+
+Neste caso edite também o arquivo override.conf:
+```bash
+sudo nano /etc/systemd/system/docker.service.d/override.conf
+```
+
+E cole o conteúdo:
+```conf
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+```
+
 > A documentação oficial (https://learn.microsoft.com/en-us/windows/wsl/wsl-config) fornece esse comando em seu exemplo.
+
+> Documentação sobre docker rodando através do systemd:
+> [docs.docker.com](https://docs.docker.com/config/daemon/systemd/)
  
 Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`. 
 
