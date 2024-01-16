@@ -359,7 +359,9 @@ No Windows 11 é possível especificar um comando padrão para ser executados se
 
 Rode o comando para editar:
 
-`sudo vim /etc/wsl.conf`
+```conf
+sudo vim /etc/wsl.conf
+```
 
 Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o conteúdo:
 
@@ -368,7 +370,18 @@ Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o con
 command = service docker start
 ```
 
-Ou caso a distribuição linux possua o systemd configurado o arquivo deverá ser alterado para:
+Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`. 
+
+---
+*Importante*: Caso a distribuição linux possua o sistema de inicialização e gerenciamento de serviços `systemd` a configuração deverá ser diferente, neste caso siga os seguintes passos:
+
+Rode o comando para editar o arquivo de configuração do WSL:
+
+```conf
+sudo vim /etc/wsl.conf
+```
+
+Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o conteúdo:
 
 ```conf
 [boot]
@@ -376,26 +389,33 @@ systemd = true
 command = systemctl start docker
 ```
 
-Neste caso edite também o arquivo override.conf:
+Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`. 
+
+Edite também o arquivo `override.conf` rodando o seguinte comando:
+
 ```bash
-sudo nano /etc/systemd/system/docker.service.d/override.conf
+sudo vim /etc/systemd/system/docker.service.d/override.conf
 ```
 
-E cole o conteúdo:
+Da mesma forma que o arquivo anterior, aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o conteúdo:
 ```conf
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 ```
 
-> A documentação oficial (https://learn.microsoft.com/en-us/windows/wsl/wsl-config) fornece esse comando em seu exemplo.
+E mais uma vez pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`
 
-> Documentação sobre docker rodando através do systemd:
+> Documentação sobre o sistema de inicialização e gerenciamento de serviços `systemd` no Docker:
 > [docs.docker.com](https://docs.docker.com/config/daemon/systemd/)
- 
-Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`. 
+
+Concluído estes passos poderá prosseguir para as próximas instruções.
+
+---
 
 Pronto, basta reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell para testar. Após abrir o WSL novamente, digite o comando `docker ps` para avaliar se o comando não retorna a mensagem acima: `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
+
+> A documentação oficial (https://learn.microsoft.com/en-us/windows/wsl/wsl-config) fornece esse comando em seu exemplo.
 
 ### <a id="instalar-o-docker-com-docker-desktop"></a>2 - Instalar o Docker com Docker Desktop
 
