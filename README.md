@@ -33,6 +33,9 @@
   - [Integrar Docker com WSL 2](#integrar-docker-com-wsl-2)
     - [1 - Instalar o Docker com Docker Engine (Docker Nativo)](#1---instalar-o-docker-com-docker-engine-docker-nativo)
       - [Erro ao iniciar o Docker no Ubuntu 22.04](#erro-ao-iniciar-o-docker-no-ubuntu-2204)
+      - [Iniciar o Docker automaticamente no WSL (apenas para Windows 11)](#iniciar-o-docker-automaticamente-no-wsl-apenas-para-windows-11)
+      - [Systemd](#systemd)
+      - [Docker com Systemd](#docker-com-systemd)
     - [2 - Instalar o Docker com Docker Desktop](#2---instalar-o-docker-com-docker-desktop)
 - [Dicas e truques básicos com WSL 2](#dicas-e-truques-básicos-com-wsl-2)
 - [Dúvidas](#dúvidas)
@@ -368,7 +371,9 @@ No Windows 11 é possível especificar um comando padrão para ser executados se
 
 Rode o comando para editar:
 
-`sudo vim /etc/wsl.conf`
+```conf
+sudo vim /etc/wsl.conf
+```
 
 Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o conteúdo:
 
@@ -377,9 +382,42 @@ Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o con
 command = service docker start
 ```
 
-> A documentação oficial (https://learn.microsoft.com/en-us/windows/wsl/wsl-config) fornece esse comando em seu exemplo.
- 
-Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`. 
+#### Systemd
+
+O WSL é compatível com o `systemd`. O `systemd` é um sistema de inicialização e gerenciamento de serviços que é amplamente utilizado em distribuições Linux modernas. Ela permitirá que você use ferramentas mais complexas no Linux como snapd, LXD, etc.
+
+Não é obrigatório ativa-lo e a qualquer momento ele pode ser desativado e reativado. Para ativa-lo, edite o arquivo `/etc/wsl.conf`:
+
+Rode o comando para editar:
+
+```conf
+sudo vim /etc/wsl.conf
+```
+
+Aperte a letra `i` (para entrar no modo de inserção de conteúdo) e cole o conteúdo:
+
+```conf
+[boot]
+systemd = true
+```
+
+Quando terminar a edição, pressione `Esc`, em seguida tecle `:` para entrar com o comando `wq` (salvar e sair) e pressione `enter`.
+
+Toda vez que esta mudança for realizada é necessário reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell.
+
+#### Docker com Systemd
+
+Quando ativamos o systemd, na maioria dos casos o Docker iniciará automaticamente, portanto se você se tem a linha `command = service docker start` no `/etc/wsl.conf`, comente-a com `#` e reinicie o WSL com o comando `wsl --shutdown`.
+
+Caso contrário, você pode inicia-lo automaticamente usando os comandos:
+
+```bash
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+```
+
+É necessário reiniciar o WSL com o comando `wsl --shutdown` para que as mudanças tenham efeito.
+
 
 Pronto, basta reiniciar o WSL com o comando `wsl --shutdown` no DOS ou PowerShell para testar. Após abrir o WSL novamente, digite o comando `docker ps` para avaliar se o comando não retorna a mensagem acima: `Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?`
 
