@@ -53,14 +53,6 @@
         "list": 
         [
             {
-                "commandline": "C:\\Program Files\\Git\\bin\\bash.exe -login -i",
-                "guid": "{73225108-7633-47ae-80c1-5d00111ef646}",
-                "hidden": false,
-                "icon": "C:\\Program Files\\Git\\mingw64\\share\\git\\git-for-windows.ico",
-                "name": "Git Bash",
-                "startingDirectory": "%USERPROFILE%"
-            },
-            {
                 "font": 
                 {
                     "face": "MesloLGS NF",
