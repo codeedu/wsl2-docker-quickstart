@@ -250,7 +250,7 @@ O Docker Engine é o Docker nativo que roda no ambiente Linux e completamente su
 
 #### <a id="docker-engine-desvantagens"></a> Desvantagens
 
-* Necessário executar o comando ```sudo service docker start``` sempre que o WSL 2 foi reiniciado (Somente para usuários do Windows 10). Isto não é necessariamente uma desvantagem, mas é bom pontuar. Isto é um pequeno detalhe, mas no Windows 11 já é possível iniciar o servidor do Docker automaticamente pelo /etc/wsl.conf (Ver detalhes mais abaixo).
+* Necessário executar o comando ```sudo service docker start``` sempre que o WSL 2 foi reiniciado (Somente para usuários do Windows 10 sem o update KB5020030). Isto não é necessariamente uma desvantagem, mas é bom pontuar. Isto é um pequeno detalhe, mas no Windows 11 já é possível iniciar o servidor do Docker automaticamente pelo /etc/wsl.conf (Ver detalhes mais abaixo).
 * Se necessitar executar o Docker em outra instância do WSL 2, é necessário instalar novamente o Docker nesta instância ou configurar o acesso ao socket do Docker desejado para compartilhar o Docker entre as instâncias.
 * Não suporta containers no modo Windows.
 
@@ -365,9 +365,9 @@ O Docker Compose instalado agora estará na versão 2, para executa-lo em vez de
 > Rode novamente o `sudo service docker start`. Rode algum comando Docker como `docker ps` para verificar se está funcionando corretamente. Se não mostrar o erro acima, está ok.
 
 
-#### Iniciar o Docker automaticamente no WSL (apenas para Windows 11)
+#### Iniciar o Docker automaticamente no WSL (apenas para Windows 11 ou Windows 10 com o update KB5020030)
 
-No Windows 11 é possível especificar um comando padrão para ser executados sempre que o WSL for iniciado, isto permite que já coloquemos o serviço do docker para iniciar automaticamente. Edite o arquivo `/etc/wsl.conf`:
+É possível especificar um comando padrão para ser executados sempre que o WSL for iniciado, isto permite que já coloquemos o serviço do docker para iniciar automaticamente. Edite o arquivo `/etc/wsl.conf`:
 
 Rode o comando para editar:
 
@@ -454,7 +454,7 @@ Habilite `Enable integration with my default WSL distro` e habilite sua versão 
 echo 1 | sudo tee /proc/sys/vm/drop_caches
 ```
 * Acrescente `export DOCKER_BUILDKIT=1` no final do arquivo .profile do seu usuário do Linux para ganhar mais performance ao realizar builds com Docker. Execute o comando `source ~/.profile` para carregar esta variável de ambiente no ambiente do seu WSL 2.
-* No Windows 11 é possível iniciar o Docker automaticamente, veja a seção: [Dica para Windows 11](#dica-para-windows-11)
+* No Windows 11 ou Windows 10 com update KB5020030 é possível iniciar o Docker automaticamente, veja a seção: [Dica para Windows 11](#iniciar-o-docker-automaticamente-no-wsl-apenas-para-windows-11)
 
 ## Dúvidas
 
