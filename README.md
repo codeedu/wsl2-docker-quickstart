@@ -33,7 +33,7 @@
   - [Integrar Docker com WSL 2](#integrar-docker-com-wsl-2)
     - [1 - Instalar o Docker com Docker Engine (Docker Nativo)](#1---instalar-o-docker-com-docker-engine-docker-nativo)
       - [Erro ao iniciar o Docker no Ubuntu 22.04](#erro-ao-iniciar-o-docker-no-ubuntu-2204)
-      - [Iniciar o Docker automaticamente no WSL (apenas para Windows 11)](#iniciar-o-docker-automaticamente-no-wsl-apenas-para-windows-11)
+      - [Iniciar o Docker automaticamente no WSL (apenas para Windows 11)](#iniciar-o-docker-automaticamente-no-wsl-apenas-para-windows-11-ou-windows-10-com-o-update-kb5020030)
       - [Systemd](#systemd)
       - [Docker com Systemd](#docker-com-systemd)
     - [2 - Instalar o Docker com Docker Desktop](#2---instalar-o-docker-com-docker-desktop)
