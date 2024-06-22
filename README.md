@@ -158,7 +158,7 @@ Podemos dizer que o WSL 2 tem acesso quase que total ao recursos de sua máquina
 
 * A todo disco rígido.
 * A usar completamente os recursos de processamento.
-* A usar 80% da memória RAM disponível.
+* A usar 50% da memória RAM disponível.
 * A usar 25% da memória disponível para SWAP.
 
 Isto pode não ser interessante, uma vez que o WSL 2 pode usar praticamente todos os recursos de sua máquina, mas podemos configurar limites.
