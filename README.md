@@ -102,6 +102,7 @@
       - [É possível acessar aplicações rodando no WSL 2 pelo Windows?](#é-possível-acessar-aplicações-rodando-no-wsl-2-pelo-windows)
       - [É possível rodar aplicações gráficas no WSL 2?](#é-possível-rodar-aplicações-gráficas-no-wsl-2)
       - [Posso usar o WSL em cenários de produção?](#posso-usar-o-wsl-em-cenários-de-produção)
+      - [Posso rodar o Docker Engine junto com o Docker Desktop?](#posso-rodar-o-docker-engine-junto-com-o-docker-desktop)
       - [Quer configurar um ambiente mais produtivo no Windows?](#quer-configurar-um-ambiente-mais-produtivo-no-windows)
 
 </details>
@@ -682,7 +683,9 @@ Para diminuir ative o modo `sparse` do WSL 2, que é a compactação automática
 sparseVhd=true
 ```
 
-Esta opção só funcionará para novos discos virtuais, para os discos virtuais já criados, execute o comando:
+Esta opção só funcionará para novos discos virtuais.
+
+Para os discos virtuais já criados, execute o comando:
 
 ```bash
 wsl --manage "Ubuntu" --set-sparse true
@@ -692,6 +695,23 @@ wsl --manage "docker-desktop" --set-sparse true # Se estiver usando o Docker Des
 Isto irá converter o disco virtual para o modo sparse, que é a compactação automática do disco virtual.
 
 Antes de executar o comando, verifique se a distribuição Linux está parada, execute o comando `wsl --shutdown` para parar todas as distribuições Linux.
+
+Se você já tinha uma distribuição antiga e após aplicar o modo sparse, o disco virtual não diminuiu, você pode compacta-lo manualmente.
+
+Use a ferramenta [wslcompact](https://github.com/okibcn/wslcompact) para realizar este procedimento. Basicamente esta ferramenta será um executável ativo no `PowerShell` e ao executá-lo ele irá exportar e importar o disco virtual, forçando o WSL a compacta-lo.
+
+Execute o comando:
+
+```bash
+wslcompact -c Ubuntu
+```
+
+Será gerado um novo disco virtual chamado de `ext4.vhdx` que será sua distribuição compactada. Quando o executável pedir para registar o disco, coloque `Y` e pressione `Enter`, isto não fará ele registrar, você deverá fazer isto manualmente como foi mostrado na seção de backup e restauração deste tutorial.
+
+Remova o disco antigo com o comando `wsl --unregister Ubuntu` e registre o novo disco com o comando `wsl --import Ubuntu C:\caminho\ext4.vhdx`.
+
+> Cuidado: Faça um backup da sua distribuição Linux antes de compacta-la, pois você pode cometer um erro e perder seu Linux.
+
 
 ### Rede em modo LAN e VPN
 
@@ -802,6 +822,10 @@ Sim, este o projeto WSLg (Windows Subsystem for Linux GUI) que permite rodar apl
 ### Posso usar o WSL em cenários de produção?
 
 O WSL é uma ferramenta de desenvolvimento e não é recomendado para uso em produção.
+
+### Posso rodar o Docker Engine junto com o Docker Desktop?
+
+Não, só é possível rodar um de cada vez. É até possível ter os dois instalados, mas só um pode ser executado por vez.
 
 ### Quer configurar um ambiente mais produtivo no Windows?
 

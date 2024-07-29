@@ -102,7 +102,7 @@
     * [Can I access applications running in WSL 2 from Windows?](#can-i-access-applications-running-in-wsl-2-from-windows)
     * [Can I run graphical applications in WSL 2?](#can-i-run-graphical-applications-in-wsl-2)
     * [Can I use WSL in production scenarios?](#can-i-use-wsl-in-production-scenarios)
-
+    * [Can I run Docker Engine alongside Docker Desktop?](#can-i-run-docker-engine-alongside-docker-desktop)
 
     
 </details>
@@ -667,25 +667,53 @@ Typically, VHDX files are saved in `C:\Users\<your_user>\AppData\Local\Packages\
 
 ### Compressing the WSL 2 Virtual Disk
 
-The WSL 2 virtual disk is a VHDX file that grows as you use Linux. If you delete files, the virtual disk does not automatically shrink; it will retain its size.
+The WSL 2 virtual disk is a VHDX file that grows as you use Linux. If you delete files, the virtual disk does not automatically shrink; it will remain the same size.
 
-To reduce the size, enable the `sparse` mode in WSL 2, which is automatic virtual disk compression. To enable it, edit the `.wslconfig` file:
+To reduce its size, enable the `sparse` mode in WSL 2, which provides automatic disk compression. To enable it, edit the `.wslconfig` file:
 
 ```conf
 [wsl2]
 sparseVhd=true
 ```
 
-This option only applies to new virtual disks. For existing virtual disks, run the command:
+This option will only apply to new virtual disks.
+
+For existing virtual disks, use the following commands:
 
 ```bash
 wsl --manage "Ubuntu" --set-sparse true
 wsl --manage "docker-desktop" --set-sparse true # If using Docker Desktop
 ```
 
-This will convert the virtual disk to sparse mode, enabling automatic compression.
+This will convert the virtual disk to sparse mode, which is automatic disk compression.
 
-Before running the command, ensure the Linux distribution is stopped by executing `wsl --shutdown` to stop all Linux distributions.
+Before running the command, make sure the Linux distribution is stopped by using `wsl --shutdown` to stop all distributions.
+
+If you have an old distribution and after applying sparse mode the virtual disk hasn't reduced in size, you can compress it manually.
+
+Use the [wslcompact](https://github.com/okibcn/wslcompact) tool for this process. This tool is an executable for `PowerShell` that exports and imports the virtual disk, forcing WSL to compress it.
+
+Run the command:
+
+```bash
+wslcompact -c Ubuntu
+```
+
+This will generate a new virtual disk named `ext4.vhdx`, which will be your compressed distribution. When the executable asks to register the disk, press `Y` and then `Enter`. This won't automatically register it; you'll need to do it manually as shown in the backup and restoration section of this tutorial.
+
+Remove the old disk with:
+
+```bash
+wsl --unregister Ubuntu
+```
+
+And register the new disk with:
+
+```bash
+wsl --import Ubuntu C:\path\to\ext4.vhdx
+```
+
+> **Warning**: Backup your Linux distribution before compressing it to avoid losing data in case of errors.
 
 ### LAN and VPN Network Mode
 
@@ -798,3 +826,7 @@ Yes, WSL 2 supports graphical applications through the WSLg (Windows Subsystem f
 ### Can I use WSL in production scenarios?
 
 WSL is designed as a development tool and is not recommended for production use.
+
+### Can I run Docker Engine alongside Docker Desktop?
+
+No, you can only run one at a time. It is possible to have both installed, but only one can be running at any given time.
