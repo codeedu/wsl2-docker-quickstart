@@ -196,7 +196,7 @@ wsl --set-version <distribution name> 2
 
 Parabéns, seu WSL2 já está funcionando!
 
-![Exemplo de WSL2 funcionando](img/wsl2_funcionando.png)
+![Exemplo de WSL2 funcionando](img/wsl2-working.png)
 
 ### Instalação do WSL 2 via Windows Store
 
@@ -204,7 +204,7 @@ Também é possível instalar distribuições Linux pelo Windows Store. Basta ac
 
 Sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas úteis para desenvolvimento instaladas  por padrão.
 
-![Distribuições Linux no Windows Store](img/distribuicoes_linux.png)
+![Distribuições Linux no Windows Store](img/linux-distros.png)
 
 
 ### Integração com VSCode
@@ -410,11 +410,11 @@ Logo após a instalação, será pedido para logar com sua conta do Docker. Faç
 
 Ao final da instalação, o Docker Desktop estará instalado e rodando. Você pode ver o ícone do Docker perto do relógio do Windows. Ele ficará rodando em segundo plano. A interface do Docker Desktop deverá ficar assim:
 
-![Docker Desktop instalado](img/docker-desktop-instalado.png)
+![Docker Desktop instalado](img/installing-docker-desktop.png)
 
 Podemos ver agora que há 2 distribuições Linux rodando no WSL 2, uma é a distribuição padrão do Ubuntu (ou a que você instalou) e a outra é a distribuição do Docker Desktop. Rode o comando `wsl -l -v` para ver as distribuições Linux instaladas e seu status atual.
 
-![Distribuições Linux rodando no WSL 2](img/wsl-docker-desktop-rodando.png)
+![Distribuições Linux rodando no WSL 2](img/wsl-docker-desktop-running.png)
 
 #### Ativar o Docker na distribuição Linux
 
@@ -597,7 +597,7 @@ O WSL 2 tem acesso a todo o disco rígido do Windows, basta acessar o caminho `/
 
 O `/mnt` é um ponto de montagem do Linux, onde ele monta os dispositivos do Windows.
 
-![Mount no WSL2](img/mount_no_wsl2.png)
+![Mount no WSL2](img/mount-in-wsl2.png)
 
 ### Acessar o WSL 2 pelo Windows
 
@@ -605,7 +605,7 @@ O `/mnt` é um ponto de montagem do Linux, onde ele monta os dispositivos do Win
 
 Também é possível acessar pelo ícone `Linux` que fica do lado esquerdo do Windows Explorer. Talvez sua versão do Windows não tenha este ícone, então use o caminho `\\wsl.localhost$`.
 
-![Acessando WSL2 no Windows Explorer](img/acessando_wsl2_no_explorer.png)
+![Acessando WSL2 no Windows Explorer](img/acessing-wsl-win-explorer.png)
 
 Também é possível de dentro do Linux abrir uma pasta no Windows Explorer, basta digitar o comando `explorer.exe .` e a pasta atual será aberta no Windows Explorer.
 
@@ -627,7 +627,7 @@ Outra forma de abrir o projeto no modo WSL, é acessando a pasta do projeto no t
 
 É possível executar executáveis do Windows no WSL 2, basta digitar o caminho completo do executável do Windows no terminal do WSL 2. Por exemplo, para executar o executável `notepad.exe` do Windows, basta digitar `notepad.exe` no terminal do WSL 2.
 
-![Executando executáveis do Windows no WSL2](img/executaveis_do_windows_no_wsl2.png)
+![Executando executáveis do Windows no WSL2](img/executables-win-in-wsl2.png)
 
 ### Listando as distribuições Linux instaladas no WSL 2
 
@@ -639,7 +639,7 @@ Para parar todas as distribuições Linux que estão rodando no WSL 2, execute o
 
 Se você quiser parar somente uma distribuição Linux específica, execute o comando `wsl --t <distribution name>`.
 
-![Verificando distribuições instaladas do Linux no WSL 2](img/verificando_distribuicoes_instaladas_do_linux_no_wsl2.png)
+![Verificando distribuições instaladas do Linux no WSL 2](img/check-installed-distros.png)
 
 > Se estiver usando o Docker Desktop, ao executar o comando `wsl --shutdown`, o Docker Desktop irá parar também e será necessário reinicia-lo novamente.
 
