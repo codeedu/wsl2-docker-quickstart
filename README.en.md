@@ -88,7 +88,7 @@
     * [Automatically Start Docker in WSL 2](#automatically-start-docker-in-wsl-2)
     * [Releasing RAM Memory from WSL 2](#releasing-ram-memory-from-wsl-2)
     * [.wslconfig and wsl.conf Files](#wslconfig-and-wslconf-files)
-
+    * [Expanding the WSL 2 Virtual Disk](#expanding-the-wsl-2-virtual-disk)
   
 </details>
 
@@ -234,7 +234,7 @@ By default, Windows Terminal will identify the main shells installed on Windows,
 
 We can say that WSL 2 has almost complete access to your machine's resources. By default, it has access to:
 
-* The entire hard drive.
+* A 1TB hard disk. A 1TB virtual disk is created to store Linux files (this limit can be expanded, see the Tips and Tricks section).
 * Full use of processing resources.
 * 50% of the available RAM.
 * 25% of the available SWAP (virtual memory).
@@ -725,7 +725,7 @@ To resolve this, enable the `mirrored` network mode in WSL 2, which makes the WS
 
 ```conf
 [wsl2]
-network=mirrored
+networkingMode=mirrored
 ```
 
 This option will only work after restarting WSL with the command `wsl --shutdown`.
@@ -761,7 +761,7 @@ command = service docker start
 
 ### Releasing RAM Memory from WSL 2
 
-If you notice that WSL 2 is consuming too many resources, execute the following commands within the WSL 2 terminal to release RAM memory:
+If you notice that WSL 2 is consuming a lot of your machine's resources, run the following command in the WSL 2 terminal to free up RAM:
 
 ```bash
 echo 1 | sudo tee /proc/sys/vm/drop_caches
@@ -769,9 +769,7 @@ echo 1 | sudo tee /proc/sys/vm/drop_caches
 
 This method is aggressive as it releases RAM instantly but may be necessary in some cases.
 
-> Do not use this option if you
-
- are using Docker Engine. It can be used with Docker Desktop or if Docker is not installed.
+> Do not use the option below if you are not using Docker Engine. It can be used with Docker Desktop or if you do not have Docker installed.
 
 WSL has a feature called `autoMemoryReclaim` that automatically releases unused RAM. 
 
@@ -787,6 +785,8 @@ Edit the `.wslconfig` file:
 autoMemoryReclaim=gradual
 ```
 
+If you want an automatic memory release option and are using Docker Engine, run the following script in WSL: [https://gist.github.com/craigloewen-msft/496078591e0bbbfdec9f144c6b50a8cc](https://gist.github.com/craigloewen-msft/496078591e0bbbfdec9f144c6b50a8cc). By default, it runs every 2 minutes, but you can change the execution interval.
+
 ### .wslconfig and wsl.conf Files
 
 The `.wslconfig` file is a global configuration file, meaning it affects all Linux distributions installed in WSL 2, as you might have multiple Linux distributions like Ubuntu, Debian, Fedora, etc.
@@ -798,6 +798,18 @@ Some options you can use in `.wslconfig` and `wsl.conf` are detailed in the offi
 > These options can help manage WSL 2 behavior, such as allocating more RAM, CPUs, etc. Basic configurations were already covered in the WSL installation section, Docker installation, and this Tips and Tricks section.
 
 These options will only take effect after restarting WSL with the command `wsl --shutdown`.
+
+### Expanding the WSL 2 Virtual Disk
+
+By default, the WSL 2 virtual disk is 1TB, but if you need more space, you can expand the virtual disk.
+
+A simple way to check the disk size is to run the following command in PowerShell or DOS:
+
+```bash
+wsl --system -d <distribution-name> df -h /mnt/wslg/distro
+```
+
+Use Windows `diskpart` to expand its size. Follow this tutorial: [How to Expand the Size of Your WSL 2 Virtual Hard Disk](https://learn.microsoft.com/en-us/windows/wsl/disk-space#how-to-expand-the-size-of-your-wsl-2-virtual-hard-disk).
 
 ## FAQs
 

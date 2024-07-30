@@ -88,6 +88,7 @@
     - [Iniciar o Docker automaticamente no WSL 2](#iniciar-o-docker-automaticamente-no-wsl-2)
     - [Liberar memória RAM do WSL 2](#liberar-memória-ram-do-wsl-2)
     - [Arquivos .wslconfig e wsl.conf](#arquivos-wslconfig-e-wslconf)
+    - [Expandir o disco virtual do WSL 2](#expandir-o-disco-virtual-do-wsl-2)
 </details>
 
 <details open>
@@ -236,7 +237,7 @@ Por padrão, o Windows Terminal vai identificar os principais shells instalados 
 
 Podemos dizer que o WSL 2 tem acesso quase que total ao recursos de sua máquina. Ele tem acesso por padrão:
 
-* A todo disco rígido.
+* A 1TB de disco rígido. É criado um disco virtual de 1TB para armazenar os arquivos do Linux (este limite pode ser expandido, ver a área de dicas e truques).
 * A usar completamente os recursos de processamento.
 * A usar 50% da memória RAM disponível.
 * A usar 25% da memória disponível para SWAP (memória virtual).
@@ -253,8 +254,6 @@ Estes são limites de exemplo e as configurações mais básicas a serem utiliza
 
 
 Para mais detalhes veja esta documentação da Microsoft: [https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#configuration-setting-for-wslconfig). Existem outras configurações que podem ser feitas, como configurações de rede, VPN, liberação de memória, etc.
-
-
 
 Para aplicar estas configurações é necessário reiniciar as distribuições Linux. Execute o comando: `wsl --shutdown` (Este comando vai desligar todas as instâncias WSL 2 ativas, basta abrir o terminal novamente para usa-las já com as novas configurações).
 
@@ -723,7 +722,7 @@ Para resolver isto, ative o modo `mirrored` da rede do WSL 2, que fará com que 
 
 ```conf
 [wsl2]
-network=mirrored
+networkingMode=mirrored
 ```
 
 Esta opção só funcionará após reiniciar o WSL com o comando `wsl --shutdown`.
@@ -759,7 +758,7 @@ command = service docker start
 
 ### Liberar memória RAM do WSL 2
 
-Se verificar que o WSL 2 está consumindo muitos recursos da máquina, execute os seguintes comandos dentro do terminal WSL 2 para liberar memória RAM:
+Se verificar que o WSL 2 está consumindo muitos recursos da máquina, execute o seguinte comando dentro do terminal WSL 2 para liberar memória RAM:
 
 ```bash
 echo 1 | sudo tee /proc/sys/vm/drop_caches
@@ -767,7 +766,7 @@ echo 1 | sudo tee /proc/sys/vm/drop_caches
 
 Este método é agressivo, porque libera instantaneamente a memória RAM, mas pode ser necessário em alguns casos.
 
-> Não use esta opção se estiver usando o Docker Engine. Pode ser utilizado com o Docker Desktop ou se não tiver o Docker instalado.
+> Não use a opção abaixo opção se não estiver usando o Docker Engine. Pode ser utilizado com o Docker Desktop ou se não tiver o Docker instalado.
 
 O WSL possui um recurso chamado `autoMemoryReclaim` que libera a memória RAM que não está sendo usada de forma automática. 
 
@@ -783,6 +782,8 @@ Edite o arquivo `.wslconfig`:
 autoMemoryReclaim=gradual
 ```
 
+Caso queria uma opção de liberação de memória automática e estiver usando o Docker Engine, coloque o seguinte script para rodar no WSL: [https://gist.github.com/craigloewen-msft/496078591e0bbbfdec9f144c6b50a8cc](https://gist.github.com/craigloewen-msft/496078591e0bbbfdec9f144c6b50a8cc). Por padrão, ele vai rodar de 2 em 2 minutos, mas você pode alterar o tempo de execução.
+
 ### Arquivos .wslconfig e wsl.conf
 
 O arquivo `.wslconfig` é um arquivo de configuração global, ou seja, ele afetará todas as distribuições Linux que você tiver instalado no WSL 2, porque você pode ter mais de uma distribuição Linux instalada no WSL 2, como um Ubuntu, um Debian, um Fedora, etc.
@@ -794,6 +795,19 @@ Existem algumas opções que podem ser usadas no arquivo `.wslconfig` e `wsl.con
 > Estas opções pode ajudar em como o WSL 2 se comporta, como alocar mais memória RAM, mais CPUs, etc. As configurações mais básicas já foram mostradas na parte de instalação do WSL, na parte de instalação do Docker e também nesta seção de Dicas e trues.
 
 Esta opção só funcionará após reiniciar o WSL com o comando `wsl --shutdown`.
+
+### Expandir o disco virtual do WSL 2
+
+Por padrão o disco virtual do WSL 2 é de 1TB, mas se você precisar de mais espaço, é possível expandir o disco virtual. 
+
+Uma maneira simples de verificar o tamanho do disco é rodar o seguinte comando no PowerShell ou DOS:
+
+```bash
+wsl --system -d <distribution-name> df -h /mnt/wslg/distro
+```
+
+Utilize o `diskpart` do Windows para expandir o tamanho dele, siga este tutorial: [https://learn.microsoft.com/en-us/windows/wsl/disk-space#how-to-expand-the-size-of-your-wsl-2-virtual-hard-disk](https://learn.microsoft.com/en-us/windows/wsl/disk-space#how-to-expand-the-size-of-your-wsl-2-virtual-hard-disk)
+
 
 ## Dúvidas
 
