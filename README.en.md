@@ -710,7 +710,7 @@ wsl --unregister Ubuntu
 And register the new disk with:
 
 ```bash
-wsl --import Ubuntu C:\path\to\ext4.vhdx
+wsl --import-in-place Ubuntu C:\path\to\ext4.vhdx
 ```
 
 > **Warning**: Backup your Linux distribution before compressing it to avoid losing data in case of errors.
