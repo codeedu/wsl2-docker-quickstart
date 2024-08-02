@@ -705,9 +705,9 @@ Execute o comando:
 wslcompact -c Ubuntu
 ```
 
-Será gerado um novo disco virtual chamado de `ext4.vhdx` que será sua distribuição compactada. Quando o executável pedir para registar o disco, coloque `Y` e pressione `Enter`, isto não fará ele registrar, você deverá fazer isto manualmente como foi mostrado na seção de backup e restauração deste tutorial.
+Será gerado um novo disco virtual chamado de `ext4.vhdx` que será sua distribuição compactada. Quando o executável pedir para registrar o disco, coloque `Y` e pressione `Enter`, isto não fará ele registrar, você deverá fazer isto manualmente como foi mostrado na seção de backup e restauração deste tutorial.
 
-Remova o disco antigo com o comando `wsl --unregister Ubuntu` e registre o novo disco com o comando `wsl --import Ubuntu C:\caminho\ext4.vhdx`.
+Remova o disco antigo com o comando `wsl --unregister Ubuntu` e registre o novo disco com o comando `wsl --import-in-place Ubuntu C:\caminho\ext4.vhdx`.
 
 > Cuidado: Faça um backup da sua distribuição Linux antes de compacta-la, pois você pode cometer um erro e perder seu Linux.
 
