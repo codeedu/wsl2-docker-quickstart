@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="https://fullcycle.com.br/" target="blank"><img src="https://fullcycle.com.br/wp-content/themes/fullcycle/assets/images/fullcycle-logo.svg"/></a>
+  <a href="https://fullcycle.com.br/" target="blank"><img src="https://fullcycle.com.br/wp-content/themes/fullcycle/assets/images/logo-fc.svg"/></a>
 </p>
 
-# Guia rápido do WSL2 + Docker
+# Guia/Tutorial rápido do WSL2 + Docker
 
 *Read this in other language: [English](README.en.md)
 
