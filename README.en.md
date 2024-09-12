@@ -2,7 +2,7 @@
   <a href="https://fullcycle.com.br/" target="blank"><img src="https://fullcycle.com.br/wp-content/themes/fullcycle/assets/images/fullcycle-logo.svg"/></a>
 </p>
 
-# WSL2 + Docker Quick Guide
+# WSL2 + Docker Quick Guide/Tutorial
 
 *Read this in other language: [Portuguese](README.md)
 
@@ -343,6 +343,8 @@ Runs on Microsoft's **Hyper-V** instead of using VirtualBox used by Docker Toolb
 Hyper-V tends to require many machine resources and, although the performance is better than Docker Toolbox, the machine may become slow for other tasks on Windows.
 
 ### 3. Docker Desktop with WSL2
+
+> We did a complete overview of Docker Desktop, including for other operating systems as well. Check it out [https://www.youtube.com/watch?v=99dCerRKO6s](https://www.youtube.com/watch?v=99dCerRKO6s)
 
 Runs on **Virtual Machine Platform**, a component of Hyper-V, and integrates with WSL2, allowing Docker to run within the Linux environment.
 
@@ -842,3 +844,7 @@ WSL is designed as a development tool and is not recommended for production use.
 ### Can I run Docker Engine alongside Docker Desktop?
 
 No, you can only run one at a time. It is possible to have both installed, but only one can be running at any given time.
+
+### Dúvidas sobre o Docker Desktop
+
+We did a complete overview of Docker Desktop, including for other operating systems as well. Check it out [https://www.youtube.com/watch?v=99dCerRKO6s](https://www.youtube.com/watch?v=99dCerRKO6s)
