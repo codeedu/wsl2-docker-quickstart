@@ -104,6 +104,7 @@
       - [É possível rodar aplicações gráficas no WSL 2?](#é-possível-rodar-aplicações-gráficas-no-wsl-2)
       - [Posso usar o WSL em cenários de produção?](#posso-usar-o-wsl-em-cenários-de-produção)
       - [Posso rodar o Docker Engine junto com o Docker Desktop?](#posso-rodar-o-docker-engine-junto-com-o-docker-desktop)
+      - [Dúvidas sobre o Docker Desktop](#dúvidas-sobre-o-docker-desktop)
       - [Quer configurar um ambiente mais produtivo no Windows?](#quer-configurar-um-ambiente-mais-produtivo-no-windows)
 
 </details>
@@ -349,6 +350,8 @@ Roda em cima do **Hyper-V** da Microsoft em vez de usar o VirtualBox usando pelo
 O Hyper-V costuma requerer muitos recursos da máquina e apesar do desempenho ser melhor que o Docker Toolbox, a máquina pode ficar lenta para se utilizar outras coisas no Windows.
 
 ### 3. Docker Desktop com WSL2
+
+> Fizemos um overview completo do Docker Desktop, inclusive para outros sistemas operacionais também, veja [https://www.youtube.com/watch?v=99dCerRKO6s](https://www.youtube.com/watch?v=99dCerRKO6s)
 
 Roda em cima do **Virtual Machine Platform** que é um componente do Hyper-V e Se integra com o WSL2 permitindo rodar o Docker dentro do ambiente do Linux. 
 
@@ -840,6 +843,10 @@ O WSL é uma ferramenta de desenvolvimento e não é recomendado para uso em pro
 ### Posso rodar o Docker Engine junto com o Docker Desktop?
 
 Não, só é possível rodar um de cada vez. É até possível ter os dois instalados, mas só um pode ser executado por vez.
+
+### Dúvidas sobre o Docker Desktop
+
+Fizemos um overview completo do Docker Desktop, inclusive para outros sistemas operacionais também, veja [https://www.youtube.com/watch?v=99dCerRKO6s](https://www.youtube.com/watch?v=99dCerRKO6s)
 
 ### Quer configurar um ambiente mais produtivo no Windows?
 
