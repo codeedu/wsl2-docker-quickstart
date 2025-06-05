@@ -152,20 +152,20 @@ Provavelmente seu Windows já está na versão suportada, mas verifique isto ace
 
 Todas as instruções abaixo são para o Windows 10/11.
 
-### 🧰 Habilitar recursos do Windows (visualmente)
+### Habilitar recursos do Windows (visualmente)
 
 Antes de instalar ou atualizar o WSL, certifique-se de que os recursos necessários estejam ativados:
 
 1. Pressione `Win + R`, digite `optionalfeatures` e pressione Enter.
 2. Na janela “Recursos do Windows”, habilite:
 
-   - ☑ Subsistema do Windows para Linux  
-   - ☑ Plataforma de Máquina Virtual  
-   - ☑ Hyper-V  
+   - Subsistema do Windows para Linux  
+   - Plataforma de Máquina Virtual  
+   - Hyper-V  
 
 3. Clique em **OK** e reinicie o computador.
 
-> 💡 Esses recursos são essenciais para o funcionamento do WSL 2 e para evitar erros como `HCS_E_SERVICE_NOT_AVAILABLE`.
+> Esses recursos são essenciais para o funcionamento do WSL 2 e para evitar erros como `Não foi possível iniciar a operação porque um recurso necessário não foi instalado.`.
 
 ---
 
