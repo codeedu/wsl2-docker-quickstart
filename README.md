@@ -18,10 +18,11 @@
   - [Instalação do WSL 2](#instalação-do-wsl-2)
     - [Windows Update](#windows-update)
     - [Atualizar o WSL](#atualizar-o-wsl)
+    - [(Opcional) Habilitando WSL em versões antigas do Windows 10](#opcional-habilitando-wsl-em-versões-antigas-do-windows-10)
     - [Atribuir a versão default do WSL para a versão 2](#atribuir-a-versão-default-do-wsl-para-a-versão-2)
     - [Instale o Ubuntu](#instale-o-ubuntu)
-    - [(Opcional) Alterar a versão de uma distribuição do Linux de WSL 1 para WSL 2](#opcional-alterar-a-versão-de-uma-distribuição-do-linux-de-wsl-1-para-wsl-2)
-    - [Instalação do WSL 2 via Windows Store](#instalação-do-wsl-2-via-windows-store)
+    - [(Opcional) Alterar a versão de uma distribuição Linux de WSL 1 para WSL 2](#opcional-alterar-a-versão-de-uma-distribuição-linux-de-wsl-1-para-wsl-2)
+    - [Instalação do WSL 2 via Microsoft Store (alternativa)](#instalação-do-wsl-2-via-microsoft-store-alternativa)
     - [Integração com VSCode](#integração-com-vscode)
   - [Windows Terminal como terminal padrão de desenvolvimento para Windows](#windows-terminal-como-terminal-padrão-de-desenvolvimento-para-windows)
   - [O que o WSL 2 pode usar de recursos da minha máquina?](#o-que-o-wsl-2-pode-usar-de-recursos-da-sua-máquina)
@@ -152,9 +153,23 @@ Provavelmente seu Windows já está na versão suportada, mas verifique isto ace
 
 Todas as instruções abaixo são para o Windows 10/11.
 
-### Habilitar recursos do Windows (visualmente)
+### Windows Update
 
-Antes de instalar ou atualizar o WSL, certifique-se de que os recursos necessários estejam ativados:
+Verifique se seu Windows está atualizado, pois o WSL 2 depende de uma versão atualizada do Hyper-V. Verifique o Windows Update.
+
+### Atualizar o WSL
+
+Com a versão 2004 do Windows 10 ou qualquer versão do Windows 11, o WSL já estará presente em sua máquina. Para garantir que você está usando a versão mais recente do WSL, execute:
+
+```bash
+wsl --update
+```
+
+---
+
+### (Opcional) Habilitando WSL em versões antigas do Windows 10
+
+Em versões mais antigas do Windows 10, o WSL 2 não vem habilitado por padrão. Siga os passos seguintes.
 
 1. Pressione `Win + R`, digite `optionalfeatures` e pressione Enter.
 2. Na janela “Recursos do Windows”, habilite:
@@ -166,26 +181,6 @@ Antes de instalar ou atualizar o WSL, certifique-se de que os recursos necessár
 3. Clique em **OK** e reinicie o computador.
 
 > Esses recursos são essenciais para o funcionamento do WSL 2 e para evitar erros como `Não foi possível iniciar a operação porque um recurso necessário não foi instalado.`.
-
----
-
-### Verifique se já possui distribuições e a versão delas
-
-Antes de trocar versões ou instalar novas distribuições, veja se o WSL 2 já está ativo e qual versão está sendo usada:
-
-```bash
-wsl -l -v
-```
-
----
-
-### Atualizar o WSL
-
-Com a versão 2004 do Windows 10 ou qualquer versão do Windows 11, o WSL já estará presente em sua máquina. Para garantir que você está usando a versão mais recente do WSL, execute:
-
-```bash
-wsl --update
-```
 
 ---
 
@@ -215,7 +210,7 @@ Se quiser instalar uma versão diferente do Ubuntu, execute:
 wsl --list --online
 ```
 
-Instale a versão desejada com:
+Caso queria instalar outra distribuição execute:
 
 ```bash
 wsl --install -d nome-da-distribuicao
@@ -237,6 +232,14 @@ Se você já tinha o WSL instalado antes e a distribuição está usando a vers�
 wsl --set-version <distribution name> 2
 ```
 
+Isto acontece raramente, mas algumas pessoas já tinham o WSL 1 instalado antes do WSL 2 ser lançado. Se você não sabe qual versão está usando, execute o comando:
+
+```bash
+wsl -l -v
+```
+
+Certifique-se de que a distribuição que você está usando está na versão 2. Se não estiver, execute o comando acima para alterar a versão.
+
 ---
 
 Parabéns, seu WSL2 já está funcionando!
@@ -250,13 +253,6 @@ Parabéns, seu WSL2 já está funcionando!
 Também é possível instalar distribuições Linux pela Microsoft Store. Basta abrir a loja e buscar pela distribuição desejada, como `Ubuntu`, e clicar em instalar.
 
 ![Distribuições Linux no Windows Store](img/linux-distros.png)
-
----
-
-### (Opcional) Recomendação de terminal
-
-Recomendamos o uso do [Windows Terminal](https://docs.microsoft.com/pt-br/windows/terminal/get-started) como terminal padrão. Ele unifica PowerShell, CMD e Ubuntu em uma interface moderna e personalizável.
-
 
 ### Integração com VSCode
 
