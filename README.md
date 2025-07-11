@@ -18,10 +18,11 @@
   - [Instalação do WSL 2](#instalação-do-wsl-2)
     - [Windows Update](#windows-update)
     - [Atualizar o WSL](#atualizar-o-wsl)
+    - [(Opcional) Habilitando WSL em versões antigas do Windows 10](#opcional-habilitando-wsl-em-versões-antigas-do-windows-10)
     - [Atribuir a versão default do WSL para a versão 2](#atribuir-a-versão-default-do-wsl-para-a-versão-2)
     - [Instale o Ubuntu](#instale-o-ubuntu)
-    - [(Opcional) Alterar a versão de uma distribuição do Linux de WSL 1 para WSL 2](#opcional-alterar-a-versão-de-uma-distribuição-do-linux-de-wsl-1-para-wsl-2)
-    - [Instalação do WSL 2 via Windows Store](#instalação-do-wsl-2-via-windows-store)
+    - [(Opcional) Alterar a versão de uma distribuição Linux de WSL 1 para WSL 2](#opcional-alterar-a-versão-de-uma-distribuição-linux-de-wsl-1-para-wsl-2)
+    - [Instalação do WSL 2 via Microsoft Store (alternativa)](#instalação-do-wsl-2-via-microsoft-store-alternativa)
     - [Integração com VSCode](#integração-com-vscode)
   - [Windows Terminal como terminal padrão de desenvolvimento para Windows](#windows-terminal-como-terminal-padrão-de-desenvolvimento-para-windows)
   - [O que o WSL 2 pode usar de recursos da minha máquina?](#o-que-o-wsl-2-pode-usar-de-recursos-da-sua-máquina)
@@ -109,14 +110,13 @@
 
 </details>
 
-
 ## O que é o WSL2 
 
 Em 2016, a Microsoft anunciou a possibilidade de rodar o Linux dentro do Windows 10 como um subsistema, isso foi chamado de **WSL** ou **Windows Subsystem for Linux**.
 
 O acesso ao sistema de arquivos no Windows 10 pelo Linux era simples e rápido, porém não tínhamos uma execução completa do kernel do Linux, além de outros artefatos nativos e isto impossibilitava a execução de várias tarefas no Linux, uma delas é o Docker.
 
-Em 2019, a Microsoft anunciou o **WSL 2**, com uma dinâmica aprimorada em relação a 1ª versão:
+Em 2019, a Microsoft anunciou o **WSL 2**, com uma dinâmica aprimorada em relação à 1ª versão:
 
 * Execução do kernel completo do Linux.
 * Melhor desempenho para acesso aos arquivos dentro do Linux.
@@ -128,6 +128,8 @@ Com WSL 2 é possível executar Docker e outras ferramentas que dependem do Kern
 
 Compare as versões do WSL: [https://docs.microsoft.com/pt-br/windows/wsl/compare-versions](https://docs.microsoft.com/pt-br/windows/wsl/compare-versions)
 
+---
+
 ## Requisitos mínimos
 
 * **Windows 10 Home ou Professional**
@@ -137,13 +139,15 @@ Compare as versões do WSL: [https://docs.microsoft.com/pt-br/windows/wsl/compar
 * **Windows 11 Home ou Professional**
   - Versão 22000 ou superior (qualquer Windows 11).
 
-* Uma máquina compatível com virtualização (verifique a disponibilidade de acordo com a marca do seu processador. Se sua máquina for mais antiga pode ser necessária habilita-la na BIOS).
+* Uma máquina compatível com virtualização (verifique a disponibilidade de acordo com a marca do seu processador. Se sua máquina for mais antiga pode ser necessária habilitá-la na BIOS).
 
 * Pelo menos 4GB de memória RAM (Recomendado 8GB).
 
 Provavelmente seu Windows já está na versão suportada, mas verifique isto acessando `Todas as Configurações > Sistema > Sobre`. Caso não esteja, use o Assistente do Windows Update para atualizar a sua versão do Windows.
 
 > **É essencial manter o Windows atualizado, pois o WSL 2 depende de uma versão atualizada do Hyper-V. Verifique o Windows Update.**
+
+---
 
 ## Instalação do WSL 2
 
@@ -155,19 +159,40 @@ Verifique se seu Windows está atualizado, pois o WSL 2 depende de uma versão a
 
 ### Atualizar o WSL
 
-Com a versão 2004 do Windows 10 ou Windows 11, o WSL já estará presente em sua máquina, execute o comando para pegar a versão mais recente do WSL:
+Com a versão 2004 do Windows 10 ou qualquer versão do Windows 11, o WSL já estará presente em sua máquina. Para garantir que você está usando a versão mais recente do WSL, execute:
 
-``` bash
+```bash
 wsl --update
 ```
 
+---
+
+### (Opcional) Habilitando WSL em versões antigas do Windows 10
+
+Em versões mais antigas do Windows 10, o WSL 2 não vem habilitado por padrão. Siga os passos seguintes.
+
+1. Pressione `Win + R`, digite `optionalfeatures` e pressione Enter.
+2. Na janela “Recursos do Windows”, habilite:
+
+   - Subsistema do Windows para Linux  
+   - Plataforma de Máquina Virtual  
+   - Hyper-V  
+
+3. Clique em **OK** e reinicie o computador.
+
+> Esses recursos são essenciais para o funcionamento do WSL 2 e para evitar erros como `Não foi possível iniciar a operação porque um recurso necessário não foi instalado.`.
+
+---
+
 ### Atribuir a versão default do WSL para a versão 2
 
-A versão 2 normalmente é a default, mas a versão 1 do WSL pode estar como default, execute o comando abaixo para definir como default a versão 2:
+A versão 2 normalmente é a default, mas a versão 1 do WSL pode estar como padrão. Execute o comando abaixo para definir como padrão a versão 2:
 
-``` bash
+```bash
 wsl --set-default-version 2
 ```
+
+---
 
 ### Instale o Ubuntu
 
@@ -179,36 +204,55 @@ wsl --install
 
 Este comando irá instalar o `Ubuntu` como o Linux padrão. 
 
-Se você quiser instalar uma versão diferente do Ubuntu, execute o comando `wsl -l -o`. Será listado todas as versões de Linux disponíveis. Instale a versão escolhida com o comando `wsl --install -d nome-da-distribuicao`.
+Se quiser instalar uma versão diferente do Ubuntu, execute:
+
+```bash
+wsl --list --online
+```
+
+Caso queria instalar outra distribuição execute:
+
+```bash
+wsl --install -d nome-da-distribuicao
+```
 
 Sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas úteis para desenvolvimento instaladas por padrão.
 
-Após o término do comando, você deverá criar um **nome de usuário** que poderá ser o mesmo da sua máquina (crie um nome de usuário sem espaço e caracteres especiais) e uma **senha** (defina uma senha forte). Esta senha será usada para instalar pacotes e realizar operações de superusuário.
+Após o término da instalação, será solicitado que você crie um **nome de usuário** (sem espaços ou caracteres especiais) e uma **senha**. Essa senha será usada para instalar pacotes e executar comandos como superusuário.
 
-Para abrir uma nova janela do Ubuntu, basta digitar `Ubuntu` no menu iniciar e clicar no ícone do Ubuntu.	
+Para abrir o Ubuntu, digite `Ubuntu` no menu iniciar e clique no ícone.
 
-Recomendamos o uso do [Windows Terminal](https://docs.microsoft.com/pt-br/windows/terminal/get-started) como terminal padrão para desenvolvimento no Windows. Ele agregará o shell do Ubuntu, assim como o PowerShell e o CMD em uma única janela, além de permitir personalização de cores e temas.
+---
 
-### (Opcional) Alterar a versão de uma distribuição do Linux de WSL 1 para WSL 2
+### (Opcional) Alterar a versão de uma distribuição Linux de WSL 1 para WSL 2
 
-Se a distribuição Linux que você instalou estiver na versão 1, você pode alterar para a versão 2 com o seguinte comando:
+Se você já tinha o WSL instalado antes e a distribuição está usando a versão 1, altere com:
 
-``` bash
+```bash
 wsl --set-version <distribution name> 2
 ```
+
+Isto acontece raramente, mas algumas pessoas já tinham o WSL 1 instalado antes do WSL 2 ser lançado. Se você não sabe qual versão está usando, execute o comando:
+
+```bash
+wsl -l -v
+```
+
+Certifique-se de que a distribuição que você está usando está na versão 2. Se não estiver, execute o comando acima para alterar a versão.
+
+---
 
 Parabéns, seu WSL2 já está funcionando!
 
 ![Exemplo de WSL2 funcionando](img/wsl2-working.png)
 
-### Instalação do WSL 2 via Windows Store
+---
 
-Também é possível instalar distribuições Linux pelo Windows Store. Basta acessar o Windows Store e procurar pelo nome da distribuição Linux desejada e clicar em instalar.
+### Instalação do WSL 2 via Microsoft Store (alternativa)
 
-Sugerimos o Ubuntu (sem versão) por ser uma distribuição popular e que já vem com várias ferramentas úteis para desenvolvimento instaladas  por padrão.
+Também é possível instalar distribuições Linux pela Microsoft Store. Basta abrir a loja e buscar pela distribuição desejada, como `Ubuntu`, e clicar em instalar.
 
 ![Distribuições Linux no Windows Store](img/linux-distros.png)
-
 
 ### Integração com VSCode
 

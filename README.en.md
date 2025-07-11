@@ -18,10 +18,11 @@
   * [Installation of WSL 2](#installation-of-wsl-2)
     * [Windows Update](#windows-update)
     * [Update WSL](#update-wsl)
+    * [(Optional) Enabling WSL on older versions of Windows 10](#optional-enabling-wsl-on-older-versions-of-windows-10)
     * [Set the default version of WSL to version 2](#set-the-default-version-of-wsl-to-version-2)
     * [Install Ubuntu](#install-ubuntu)
     * [(Optional) Change the version of a Linux distribution from WSL 1 to WSL 2](#optional-change-the-version-of-a-linux-distribution-from-wsl-1-to-wsl-2)
-    * [Installation of WSL 2 via Windows Store](#installation-of-wsl-2-via-windows-store)
+    * [Installation of WSL 2 via Microsoft Store (alternative)](#installation-of-wsl-2-via-microsoft-store-alternative)
     * [Integration with VSCode](#integration-with-vscode)
   * [Windows Terminal as the default development terminal for Windows](#windows-terminal-as-the-default-development-terminal-for-windows)
   * [What WSL 2 Can Use from Your Machine's Resources](#what-wsl-2-can-use-from-your-machines-resources)
@@ -103,7 +104,8 @@
     * [Can I run graphical applications in WSL 2?](#can-i-run-graphical-applications-in-wsl-2)
     * [Can I use WSL in production scenarios?](#can-i-use-wsl-in-production-scenarios)
     * [Can I run Docker Engine alongside Docker Desktop?](#can-i-run-docker-engine-alongside-docker-desktop)
-
+    * [Questions about Docker Desktop](#questions-about-docker-desktop)
+    * [Want to set up a more productive environment on Windows?](#want-to-set-up-a-more-productive-environment-on-windows)
     
 </details>
 
@@ -152,11 +154,30 @@ Make sure your Windows is updated, as WSL 2 depends on an updated version of Hyp
 
 ### Update WSL
 
-With Windows 10 version 2004 or Windows 11, WSL will already be present on your machine. Run the command to get the latest version of WSL:
+With Windows 10 version 2004 or any version of Windows 11, WSL will already be present on your machine. To ensure you're using the latest version of WSL, run:
 
 ```bash
 wsl --update
 ```
+
+---
+
+### (Optional) Enabling WSL on older versions of Windows 10
+
+On older versions of Windows 10, WSL 2 is not enabled by default. Follow these steps:
+
+1. Press `Win + R`, type `optionalfeatures` and press Enter.
+2. In the "Windows Features" window, enable:
+
+   - Windows Subsystem for Linux  
+   - Virtual Machine Platform  
+   - Hyper-V  
+
+3. Click **OK** and restart your computer.
+
+> These features are essential for WSL 2 to work and to avoid errors like `Could not start the operation because a required feature is not installed.`.
+
+---
 
 ### Set the default version of WSL to version 2
 
@@ -188,21 +209,31 @@ We recommend using the [Windows Terminal](https://docs.microsoft.com/en-us/windo
 
 ### (Optional) Change the version of a Linux distribution from WSL 1 to WSL 2
 
-If the Linux distribution you installed is on version 1, you can change it to version 2 with the following command:
+If you already had WSL installed before and the distribution is using version 1, change it with:
 
 ```bash
 wsl --set-version <distribution name> 2
 ```
 
+This rarely happens, but some people already had WSL 1 installed before WSL 2 was released. If you don't know which version you're using, run the command:
+
+```bash
+wsl -l -v
+```
+
+Make sure the distribution you're using is on version 2. If not, run the command above to change the version.
+
+---
+
 Congratulations, your WSL2 is now up and running!
 
 ![Example of WSL2 running](img/wsl2-working.png)
 
-### Installation of WSL 2 via Windows Store
+---
 
-It is also possible to install Linux distributions from the Windows Store. Just access the Windows Store, search for the desired Linux distribution name, and click install.
+### Installation of WSL 2 via Microsoft Store (alternative)
 
-We suggest Ubuntu (without a version) because it is a popular distribution that comes with many useful development tools installed by default.
+It is also possible to install Linux distributions from the Microsoft Store. Just open the store and search for the desired distribution, such as `Ubuntu`, and click install.
 
 ![Linux distributions in the Windows Store](img/linux-distros.png)
 
@@ -845,6 +876,13 @@ WSL is designed as a development tool and is not recommended for production use.
 
 No, you can only run one at a time. It is possible to have both installed, but only one can be running at any given time.
 
-### Dúvidas sobre o Docker Desktop
+### Questions about Docker Desktop
 
 We did a complete overview of Docker Desktop, including for other operating systems as well. Check it out [https://www.youtube.com/watch?v=99dCerRKO6s](https://www.youtube.com/watch?v=99dCerRKO6s)
+
+### Want to set up a more productive environment on Windows?
+
+Check out the tutorials below:
+
+- Productive development environment setup: [https://github.com/argentinaluiz/ambiente-dev-produtivo](https://github.com/argentinaluiz/ambiente-dev-produtivo)
+- How to set up a productive environment in VSCode: [https://github.com/argentinaluiz/my-vscode-settings](https://github.com/argentinaluiz/my-vscode-settings)
