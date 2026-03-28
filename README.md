@@ -521,7 +521,9 @@ A instalação do Docker no WSL 2 é idêntica a instalação do Docker em sua p
 > 
 > Se caso não funcionar, reinicie o WSL com o comando `wsl --shutdown` e inicie o serviço do Docker novamente.
 
-> OBSERVAÇÃO: Se você estiver usando uma distribuição diferente do Ubuntu, veja os comandos de instalação no documentação do Docker [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+> **Para outras distribuições Linux**
+>
+> Se você estiver usando uma distribuição diferente do Ubuntu, veja os comandos de instalação no documentação do Docker [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 Execute os comandos:
 
@@ -557,16 +559,16 @@ Reiniciar o WSL via linha de comando do Windows para que não seja necessário a
 wsl --shutdown
 ```
 
-> OBSERVAÇÃO: O serviço Docker inicia automaticamente após a instalação. Para verificar se o Docker está em execução acessar novamente o Ubuntu e utilize:
+O serviço Docker inicia automaticamente após a instalação. Para verificar se o Docker está em execução acessar novamente o Ubuntu e utilize:
 
 ```
-sudo systemctl status docker
+ sudo service docker status
 ```
 
-> OBSERVAÇÃO: Alguns sistemas podem ter esse comportamento desativado e exigirão uma inicialização manual:
+Alguns sistemas podem ter esse comportamento desativado e exigirão uma inicialização manual:
 
 ```
-sudo systemctl start docker
+ sudo service docker start
 ```
 
 Este comando acima terá que ser executado toda vez que o Linux for reiniciado. Se caso o serviço do Docker não estiver executando, mostrará esta mensagem de erro ao rodar comando `docker`:
@@ -575,15 +577,18 @@ Este comando acima terá que ser executado toda vez que o Linux for reiniciado. 
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 ```
 
-Por fim, verifique se a instalação foi bem-sucedida executando a hello-worldimagem:
+Por fim, verifique se a instalação foi bem-sucedida executando a imagem `hello-world`:
 
 ```
 sudo docker run hello-world
 ```
+
 E aparecerá em seu terminal:
 
+```
 "Hello from Docker!
 This message shows that your installation appears to be working correctly..."
+```
 
 #### Erro ao iniciar o Docker no Ubuntu 22.04
 
