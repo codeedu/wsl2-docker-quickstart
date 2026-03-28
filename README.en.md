@@ -505,36 +505,31 @@ Installing Docker on WSL 2 is similar to installing Docker on any Linux distribu
 > 
 > If it does not work, restart WSL with the command `wsl --shutdown` and start Docker service again.
 
-Execute the following commands to install Docker:
+> **For other Linux distributions**
+>
+> If you are using a distribution other than Ubuntu, check the Docker documentation for installation commands: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+
+Execute the following commands:
 
 ```bash
-sudo apt-get update
-sudo apt-get install ca-certificates curl
+sudo apt update
+sudo apt install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt update
+
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
-
-Add Docker’s repository to Ubuntu’s sources list:
-
-```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-
-> **For other Linux distributions**
->
-> If you are using a distribution other than Ubuntu, check the Docker documentation for installation commands: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 Grant permissions to run Docker with your current user:
 
