@@ -521,35 +521,31 @@ A instalação do Docker no WSL 2 é idêntica a instalação do Docker em sua p
 > 
 > Se caso não funcionar, reinicie o WSL com o comando `wsl --shutdown` e inicie o serviço do Docker novamente.
 
+> **Para outras distribuições Linux**
+>
+> Se você estiver usando uma distribuição diferente do Ubuntu, veja os comandos de instalação no documentação do Docker [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 Execute os comandos:
 
 ```
-sudo apt-get update
-sudo apt-get install ca-certificates curl
+sudo apt update
+sudo apt install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt update
+
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
-
-Adicione o repositório do Docker na lista de sources do Ubuntu:
-
-```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-
-> OBSERVAÇÃO: Se você estiver usando uma distribuição diferente do Ubuntu, veja os comandos de instalação no documentação do Docker [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 Dê permissão para rodar o Docker com seu usuário corrente:
 
@@ -563,17 +559,35 @@ Reiniciar o WSL via linha de comando do Windows para que não seja necessário a
 wsl --shutdown
 ```
 
-
-Acessar novamente o Ubuntu e iniciar o serviço do Docker:
+O serviço Docker inicia automaticamente após a instalação. Para verificar se o Docker está em execução acessar novamente o Ubuntu e utilize:
 
 ```
-sudo service docker start
+ sudo service docker status
+```
+
+Alguns sistemas podem ter esse comportamento desativado e exigirão uma inicialização manual:
+
+```
+ sudo service docker start
 ```
 
 Este comando acima terá que ser executado toda vez que o Linux for reiniciado. Se caso o serviço do Docker não estiver executando, mostrará esta mensagem de erro ao rodar comando `docker`:
 
 ```
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+```
+
+Por fim, verifique se a instalação foi bem-sucedida executando a imagem `hello-world`:
+
+```
+sudo docker run hello-world
+```
+
+E aparecerá em seu terminal:
+
+```
+"Hello from Docker!
+This message shows that your installation appears to be working correctly..."
 ```
 
 #### Erro ao iniciar o Docker no Ubuntu 22.04
