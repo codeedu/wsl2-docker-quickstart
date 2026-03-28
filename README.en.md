@@ -532,7 +532,9 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-> **NOTE:** If you are using a distribution other than Ubuntu, check the Docker documentation for installation commands: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+> **For other Linux distributions**
+>
+> If you are using a distribution other than Ubuntu, check the Docker documentation for installation commands: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 Grant permissions to run Docker with your current user:
 
@@ -546,16 +548,35 @@ Restart WSL from the Windows command line to avoid needing root permissions to r
 wsl --shutdown
 ```
 
-Re-access Ubuntu and start the Docker service:
+The Docker service starts automatically after installation. To check if Docker is running, re-access Ubuntu and use:
 
 ```bash
-sudo service docker start
+ sudo service docker status
+```
+
+Some systems may have this behavior disabled and will require manual startup:
+
+```bash
+ sudo service docker start
 ```
 
 This command will need to be executed every time Linux is restarted. If Docker is not running, you will see the following error when running Docker commands:
 
 ```bash
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+```
+
+Finally, verify the installation was successful by running the `hello-world` image:
+
+```bash
+sudo docker run hello-world
+```
+
+You will see in your terminal:
+
+```
+"Hello from Docker!
+This message shows that your installation appears to be working correctly..."
 ```
 
 #### Error Starting Docker on Ubuntu 22.04
